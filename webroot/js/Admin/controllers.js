@@ -47,15 +47,53 @@ angular.module('oci_controllers',[])
 			  $scope.labels_doughnout = [];
 			  $scope.data_doughnout = [];
 
-		}])
-		.controller('ProjectsController',['$scope','project_types', function($scope,project_types){
-
+		}]).controller('ProjectsController',['$scope','project_types','projects','$state', function($scope,project_types,projects,$state){
+			$scope.project =  {
+				project_create_card: true
+			};
 			project_types.all().then(function(resp){
 				$scope.project_types = resp.data.projects_types;
 				console.log($scope.project_types);
 			});
 
 			$scope.create = function (project){
-				console.log(project);
+				projects.create(project).then(function(resp){
+					// $state.go('admins.projects-sheets.create',{reload:true});
+				});
 			};
+		}]).controller('ProjectSheetsController',['$scope','project_types','projects','$state','$templateCache','$compile','userService','roleService', function($scope,project_types,projects,$state,$templateCache,$compile,userService,roleService){
+			  $scope.current_state = $state.current.name;
+
+			  if($scope.current_state === "admins.projects-sheets.create"){
+				  $scope.sheetsTabs = 'generals';
+
+				  $scope.tinymceOptions = {
+				    plugins: 'link image code table',
+				    toolbar: 'undo redo table| bold italic | alignleft aligncenter alignright | code'
+				  };
+
+				  $scope.sheet = {
+				  	project_global_review: 'Ajoutez une brève description du projet (10 maximum des lignes.): Le contexte Business, les objectifs du projet, les principales attentes du projet.'
+				  };
+
+				  userService.all().then(function(resp){
+				  	$scope.users = resp.data.users;
+				  });
+
+				  roleService.all().then(function(resp){
+				  	$scope.roles = resp.data.roles;
+				  });
+
+				  $scope.addActorSheet = function(){
+					  childScope = $scope.$new();
+					  var recursiveFields = $("<div actor-add-item-directive></div>");
+					  recursiveFields.insertAfter('#actor_area');
+					  $compile(recursiveFields)(childScope);
+					  $templateCache.removeAll();
+				  };
+
+				  $scope.submit_security_sheet = function(diagram){
+				  		console.log(diagram);
+				  };
+			  }
 		}])

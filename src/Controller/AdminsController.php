@@ -87,7 +87,6 @@ class AdminsController extends AppController
                         ->sign($signer, $key)
                         ->getToken();
                     $jwt_generated = $jwt->getPayload();
-
                     $this->RequestHandler->renderAs($this, 'json');
                     $this->set(compact('jwt_generated'));
                     $this->set('_serialize',['jwt_generated']);

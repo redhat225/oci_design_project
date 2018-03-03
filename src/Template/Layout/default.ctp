@@ -25,7 +25,6 @@ $pageDescription = 'Orange Security Projects';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('favicon.png','/img/favicon.png',['type'=>'icon']) ?>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <?= $this->fetch('meta') ?>
     <?= $this->Html->css('../node_modules/bulma/custom_bulma') ?>
     <?= $this->Html->css('main') ?>
@@ -33,7 +32,7 @@ $pageDescription = 'Orange Security Projects';
     <?= $this->Html->css('../node_modules/toastr/build/toastr.min') ?>
     <?= $this->Html->css('../node_modules/hover.css/css/hover-min.css') ?>
     <?= $this->Html->css('../node_modules/angular-colorbox/themes/dark/colorbox-darktheme') ?>
-    <?= $this->Html->css('../custom/loading-bar/dist/loading-bar') ?>
+    <?= $this->Html->css('loading-bar-custom') ?>
     <?= $this->Html->css('../js/fliptimer/fliptimer/fliptimer') ?>
 
     <?= $this->fetch('css') ?>
@@ -51,8 +50,10 @@ $pageDescription = 'Orange Security Projects';
     <?= $this->Html->script('../node_modules/angular-colorbox/js/angular-colorbox') ?>
     <?= $this->Html->script('../node_modules/chart.js/dist/Chart.min') ?>
     <?= $this->Html->script('../node_modules/angular-chart.js/dist/angular-chart.min') ?>
-    <?= $this->Html->script('../custom/loading-bar/dist/loading-bar') ?>
+    <?= $this->Html->script('../node_modules/angular-loading-bar/src/loading-bar') ?>
+
     <?= $this->Html->script('fliptimer/fliptimer/jquery.fliptimer') ?>
+    <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
     <base href="/admins/">
 </head>

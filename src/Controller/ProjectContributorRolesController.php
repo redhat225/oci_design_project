@@ -33,7 +33,7 @@ use Cake\Auth\DefaultPasswordHasher;
  *
  * @link https://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class ProjectsController extends AppController
+class ProjectContributorRolesController extends AppController
 {
     public function initialize(){
         parent::initialize();   
@@ -47,37 +47,18 @@ class ProjectsController extends AppController
         
     }
 
-    public function create(){
+    public function all(){
         if($this->request->is('ajax')){
-            if($this->request->is('post')){
-                $data = $this->request->data;
-                $data['action'] = 'create';
-                $project = $this->Projects->newEntity($data);
+            if($this->request->is('get')){
+                $roles = $this->ProjectContributorRoles->find();
 
-                if($this->Projects->save($project)){
+                if(count($roles)>0){
                     $this->RequestHandler->renderAs($this, 'json');
-                    $response = $project->id;
-                    $this->set(compact('response'));
-                    $this->set('_serialize',['response']);
+                    $this->set(compact('roles'));
+                    $this->set('_serialize',['roles']);
                 }else
-                  throw new Exception\BadRequestException(__('error'));
+                   throw new Exception\BadRequestException(__('error'));
             }
         }
     }
-
-    public function addActorReport(){
-        if(!Cache::read('token','token_add_actor'))
-            Cache::write('token',1,'token_add_actor');
-        else
-            Cache::write('token',(Cache::read('token','token_add_actor')+1),'token_add_actor');
-
-        $token = Cache::read('token','token_add_actor');
-        $this->set(compact('token'));
-        $this->set('_serialize',['token']);
-    }
-
-    public function edit(){}
-    public function view(){}
-
-
 }

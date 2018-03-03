@@ -1,7 +1,7 @@
 <div>
 	<h3 class="title">Création nouveau projet</h3>
 
-	<form ng-submit="create(project)">
+	<form name="createProjectForm" ng-submit="create(project)">
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="" class="label">
@@ -11,7 +11,7 @@
 			<div class="field-body">
 				<div class="field">
 					<div class="control has-icons-left has-icons-right">
-						<input required type="text" class="input is-uppercase has-text-weight-semibold" ng-model="projects.project_name" required>
+						<input required type="text" class="input is-uppercase has-text-weight-semibold" ng-model="project.project_name" required>
 					</div>
 				</div>
 			</div>
@@ -77,6 +77,63 @@
 				</div>
 			</div>
 		</div>
+		<!-- Indices projet -->
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<label for="" class="label">
+					Indices Projet*
+				</label>
+			</div>
+			<div class="field-body">
+
+				<!-- is application connected internet? -->
+				<div class="field">
+					<h3 class="subtitle">Connectivité Internet</h3>
+					<div class="control">
+					  <label class="radio">
+					    <input type="radio" required value="true" ng-model="project.indices.project_is_internet_connected" name="project_is_internet_connected">
+					    Oui
+					  </label>
+					  <label class="radio">
+					    <input type="radio" required value="false" ng-model="project.indices.project_is_internet_connected" name="project_is_internet_connected">
+					    Non
+					  </label>
+					</div>
+				</div>
+
+				<!-- is application harmful data? -->
+				<div class="field">
+					<h3 class="subtitle">Utilisation de données sensibles?</h3>
+					<div class="control">
+					  <label class="radio">
+					    <input type="radio" required value="true"  ng-model="project.indices.project_is_used_harmful_data" name="project_is_used_harmful_data">
+					    Oui
+					  </label>
+					  <label class="radio">
+					    <input type="radio" required value="false" ng-model="project.indices.project_is_used_harmful_data" name="project_is_used_harmful_data">
+					    Non
+					  </label>
+					</div>
+				</div>
+
+				<!-- is application used third connexions? -->
+				<div class="field">
+					<h3 class="subtitle">Connexions Tierces</h3>
+					<div class="control">
+					  <label class="radio">
+					    <input type="radio" required value="true" ng-model="project.indices.project_is_used_third_connexions" name="project_is_used_third_connexions">
+					    Oui
+					  </label>
+					  <label class="radio">
+					    <input type="radio" required value="false" ng-model="project.indices.project_is_used_third_connexions" name="project_is_used_third_connexions">
+					    Non
+					  </label>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
 		<!-- Validation  -->
 		<div class="field is-horizontal">
 			<div class="field-label">
@@ -85,7 +142,7 @@
 			<div class="field-body">
 					<div class="field is-grouped">
 					  <p class="control">
-					    <button class="button is-oci" type="submit">
+					    <button class="button is-oci" type="submit" ng-disabled="createProjectForm.$invalid || is_loading">
 					      Créer projet
 					    </button>
 					  </p>

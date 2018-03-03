@@ -22,7 +22,6 @@ use Cake\Event\Event;
 use Cake\Network\Exception;
 use \Exception as MainException;
 use Lcobucci\JWT\Builder;
-use Cake\Cache\Cache;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Cake\Utility\Security;
 use Cake\Auth\DefaultPasswordHasher;
@@ -33,7 +32,7 @@ use Cake\Auth\DefaultPasswordHasher;
  *
  * @link https://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
-class ProjectsController extends AppController
+class ProjectSheetsController extends AppController
 {
     public function initialize(){
         parent::initialize();   
@@ -56,24 +55,13 @@ class ProjectsController extends AppController
 
                 if($this->Projects->save($project)){
                     $this->RequestHandler->renderAs($this, 'json');
-                    $response = $project->id;
+                    $response = 'ok';
                     $this->set(compact('response'));
                     $this->set('_serialize',['response']);
                 }else
                   throw new Exception\BadRequestException(__('error'));
             }
         }
-    }
-
-    public function addActorReport(){
-        if(!Cache::read('token','token_add_actor'))
-            Cache::write('token',1,'token_add_actor');
-        else
-            Cache::write('token',(Cache::read('token','token_add_actor')+1),'token_add_actor');
-
-        $token = Cache::read('token','token_add_actor');
-        $this->set(compact('token'));
-        $this->set('_serialize',['token']);
     }
 
     public function edit(){}

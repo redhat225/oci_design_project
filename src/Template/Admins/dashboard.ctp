@@ -34,6 +34,8 @@
 					<i class="fas fa-2x fa-chart-line"></i>
 			</span>
 			<span class="level-item has-text-weight-semibold has-text-intercoton-green is-pad-lft-10"> Statistiques Brèves</span>
+
+			<button class="button" ui-sref="admins.projects-sheets.create">Fiche projet</button>
 		</div>
 	</div>
 		<!-- Qucik Stats Preview - Observator & system -->
