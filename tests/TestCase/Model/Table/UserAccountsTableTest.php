@@ -26,7 +26,18 @@ class UserAccountsTableTest extends TestCase
     public $fixtures = [
         'app.user_accounts',
         'app.users',
-        'app.roles'
+        'app.roles',
+        'app.role_privileges',
+        'app.project_contributors',
+        'app.projects',
+        'app.project_types',
+        'app.project_security_audit_reports',
+        'app.project_security_audit_requirements',
+        'app.project_security_requirements',
+        'app.project_security_sheets',
+        'app.project_tickets',
+        'app.project_contributor_roles',
+        'app.project_contributor_role_contents'
     ];
 
     /**
@@ -79,6 +90,16 @@ class UserAccountsTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test findAuth method
+     *
+     * @return void
+     */
+    public function testFindAuth()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -25,7 +25,19 @@ class ProjectsTableTest extends TestCase
      */
     public $fixtures = [
         'app.projects',
-        'app.project_types'
+        'app.project_types',
+        'app.user_accounts',
+        'app.users',
+        'app.roles',
+        'app.role_privileges',
+        'app.project_contributors',
+        'app.project_contributor_roles',
+        'app.project_contributor_role_contents',
+        'app.project_security_audit_reports',
+        'app.project_security_audit_requirements',
+        'app.project_security_requirements',
+        'app.project_security_sheets',
+        'app.project_tickets'
     ];
 
     /**
@@ -58,6 +70,16 @@ class ProjectsTableTest extends TestCase
      * @return void
      */
     public function testInitialize()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test beforeMarshal method
+     *
+     * @return void
+     */
+    public function testBeforeMarshal()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -46,7 +46,7 @@ class UsersController extends AppController
     public function all(){
         if($this->request->is('ajax')){
             if($this->request->is('get')){
-                $users = $this->Users->find();
+                $users = $this->Users->find()->contain(['UserAccounts.Roles']);
                 if(count($users)>0)
                 {
                     $this->RequestHandler->renderAs($this, 'json');
@@ -54,6 +54,25 @@ class UsersController extends AppController
                     $this->set('_serialize',['users']);
                 }else
                     throw new Exception\BadRequestException(__('error'));
+            }
+        }
+    }
+
+    public function create(){
+        if($this->request->is('ajax')){
+            if($this->request->is('post')){
+                $data = $this->request->data['user'];
+                $data['action'] = 'create';
+                $data['creator'] = $this->request->session()->read('Auth.User.id');
+                $user = $this->Users->newEntity($data,['associated'=>['UserAccounts']]);
+                if($this->Users->save($user)){
+                    $response = ['message'=>'ok'];
+                    $this->RequestHandler->renderAs($this, 'json');
+                    $this->set(compact('response'));
+                    $this->set('_serialize',['response']);
+                }else{
+                  throw new Exception\BadRequestException(__('error'));
+                }
             }
         }
     }

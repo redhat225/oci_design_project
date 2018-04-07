@@ -5,7 +5,9 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Event\Event;
+use ArrayObject;
+use Cake\Utility\Text;
 /**
  * Users Model
  *
@@ -90,6 +92,85 @@ class UsersTable extends Table
             ->dateTime('deleted')
             ->allowEmpty('deleted');
 
+        $validator
+            ->scalar('user_job')
+            ->maxLength('user_job', 100)
+            ->requirePresence('user_job', 'create')
+            ->notEmpty('user_job');
+
+        $validator
+            ->requirePresence('user_photo_candidate', 'create')
+            ->add('user_photo_candidate', 'file', [
+                'rule' => ['mimeType', ['image/jpeg','image/jpg','image/png','image/bitmap','image/gif']],
+                'on' => function($context) {
+                    return !empty($context['user_photo_candidate']);
+                }
+            ])
+            ->add('user_photo_candidate', 'fileSize',[
+                'rule' => ['fileSize', '<', '3MB'],
+                'on' => function($context) {
+                    return !empty($context['user_photo_candidate']);
+                }
+            ]);
+
         return $validator;
     }
+
+   public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options){
+        if(isset($data['action'])){
+            switch($data['action']){
+                case 'create':
+                    $data['user_photo'] = Text::uuid();
+                    $data['user_fullname'] = strtoupper($data['user_fullname']);
+                    // create account
+                    $account = $data['account'];
+                    $account['user_account_is_active'] = true;
+                    $account['created_by'] = $data['creator'];
+                    $account['user_account_avatar'] = 'default_avatar.jpg';
+                        $data['user_accounts'] = [
+                            $account
+                        ];
+                break;
+
+                case 'edit-admin':
+                    
+                break;
+            }
+        }
+   }
+
+
+
+    public function beforeSave($event, $entity, $options){
+        if($entity->isNew())
+        {
+            //save profile photo
+            $target = Text::uuid().'.'.strtolower(pathinfo($entity->user_photo_candidate['name'],PATHINFO_EXTENSION));
+            if(move_uploaded_file($entity->user_photo_candidate['tmp_name'], WWW_ROOT.'img/assets/admins/photo/'.$target))
+            {
+                //assign right value to user_photo
+                $entity->user_photo = $target;
+            }else
+              return false;
+        }else
+        {
+            if(isset($entity->user_photo_candidate) && $entity->user_photo_candidate!=='null')
+            {
+                  //replace photo
+                $old_path_photo = WWW_ROOT.'img/assets/admins/photo/'.$entity->user_photo;
+                  if(file_exists($old_path_photo))
+                       unlink($old_path_photo);
+                   $target = Text::uuid().'.'.strtolower(pathinfo($entity->user_photo_candidate['name'],PATHINFO_EXTENSION));
+                    if(move_uploaded_file($entity->user_photo_candidate['tmp_name'], WWW_ROOT.'img/assets/admins/photo/'.$target))
+                    {
+                        //assign right value to user_photo
+                        $entity->user_photo = $target;
+                    }else
+                      return false;
+            }
+        }
+    }
+
+
+
 }

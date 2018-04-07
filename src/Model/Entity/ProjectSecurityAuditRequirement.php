@@ -35,6 +35,12 @@ class ProjectSecurityAuditRequirement extends Entity
         'created' => true,
         'modified' => true,
         'deleted' => true,
-        'project' => true
+        'project' => true,
+        'architecture_application' => true,
+        'architecture_application_path' => true,
+        'architecture_network' => true,
+        'architecture_network_path' => true,
+        'architecture_functional' => true,
+        'architecture_functional_path' => true,
     ];
 }

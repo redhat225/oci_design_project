@@ -7,10 +7,22 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Event\Event;
 use ArrayObject;
+use Cake\ORM\TableRegistry;
+use Cake\Network\Exception;
+use \Exception as MainException;
+use Cake\Utility\Text;
+
 /**
  * Projects Model
  *
  * @property \App\Model\Table\ProjectTypesTable|\Cake\ORM\Association\BelongsTo $ProjectTypes
+ * @property \App\Model\Table\UserAccountsTable|\Cake\ORM\Association\BelongsTo $UserAccounts
+ * @property \App\Model\Table\ProjectContributorsTable|\Cake\ORM\Association\HasMany $ProjectContributors
+ * @property \App\Model\Table\ProjectSecurityAuditReportsTable|\Cake\ORM\Association\HasMany $ProjectSecurityAuditReports
+ * @property \App\Model\Table\ProjectSecurityAuditRequirementsTable|\Cake\ORM\Association\HasMany $ProjectSecurityAuditRequirements
+ * @property \App\Model\Table\ProjectSecurityRequirementsTable|\Cake\ORM\Association\HasMany $ProjectSecurityRequirements
+ * @property \App\Model\Table\ProjectSecuritySheetsTable|\Cake\ORM\Association\HasMany $ProjectSecuritySheets
+ * @property \App\Model\Table\ProjectTicketsTable|\Cake\ORM\Association\HasMany $ProjectTickets
  *
  * @method \App\Model\Entity\Project get($primaryKey, $options = [])
  * @method \App\Model\Entity\Project newEntity($data = null, array $options = [])
@@ -45,25 +57,30 @@ class ProjectsTable extends Table
             'foreignKey' => 'project_type_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('UserAccounts', [
+            'foreignKey' => 'user_account_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->hasMany('ProjectContributors', [
+            'foreignKey' => 'project_id'
+        ]);
+        $this->hasMany('ProjectSecurityAuditReports', [
+            'foreignKey' => 'project_id'
+        ]);
+        $this->hasMany('ProjectSecurityAuditRequirements', [
+            'foreignKey' => 'project_id'
+        ]);
+        $this->hasMany('ProjectSecurityRequirements', [
+            'foreignKey' => 'project_id'
+        ]);
+        $this->hasMany('ProjectSecuritySheets', [
+            'foreignKey' => 'project_id'
+        ]);
+        $this->hasMany('ProjectTickets', [
+            'foreignKey' => 'project_id'
+        ]);
     }
 
-    public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
-    {
-        if(isset($data['action'])){
-            switch($data['action']){
-                case 'create':
-                    $data['project_fullname'] = strtoupper($data['project_name']);
-                    $data['project_criticity'] = 'critical';
-                    $data['project_indices'] = json_encode($data['indices']);
-                break;
-
-                default:
-
-                break;
-            }
-
-        }
-    }
     /**
      * Default validation rules.
      *
@@ -106,6 +123,81 @@ class ProjectsTable extends Table
         return $validator;
     }
 
+
+
+   public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
+    {
+        if(isset($data['action'])){
+            switch($data['action']){
+                case 'create':
+                    // set creator
+                    $data['user_account_id'] =  $data['created_by_contributor'];
+                    $data['project_fullname'] = strtoupper($data['project_name']);
+                    // evaluate criticity
+                    $is_project_critical = false;
+
+                    if($data['project_priority']=='P0')
+                        $is_project_critical = true;
+                    
+                    if($data['indices']['project_is_internet_connected'] == 'true' || $data['indices']['project_is_franchise_exposed'] == 'true' || $data['indices']['project_is_for_oci_and_subs'] == 'true' || $data['indices']['project_is_used_harmful_data'] == 'true' || $data['indices']['project_is_client_data_centralized'] == 'true')
+                            $is_project_critical = true;
+
+                    if($data['project_type_id']['project_type_denomination'] == 'Digitalisation' || $data['project_type_id']['project_type_denomination'] == 'OM' || $data['project_type_id']['project_type_denomination'] == 'Marketing')
+                            $is_project_critical = true;
+
+                    $data['project_type_id'] = $data['project_type_id']['id'];
+
+                    if($is_project_critical)
+                       $data['project_criticity'] = 'critical';
+                    else
+                       $data['project_criticity'] = 'noncritical';                   
+
+                    $data['project_indices'] = json_encode($data['indices']);
+
+                    // create contributors if necessary
+                    if(isset($data['contributors'])){
+                        if(count($data['contributors'])>0){
+                                $data['project_contributors'] = [];
+                                $user_accounts_table = TableRegistry::get('UserAccounts');
+
+                                foreach ($data['contributors'] as $key => $value) {
+                                    $user_account_id = $user_accounts_table->find()
+                                                                           ->select('id')
+                                                                           ->where(['user_id'=>$value['id']])
+                                                                           ->first();
+                                    // create project contributors
+                                    $contributor = [
+                                         'contributor_details' => 'ras', 
+                                         'user_account_id' => $user_account_id->id, 
+                                         'project_contributor_role_id'=> $value['assigned_role']['id'],  
+                                         'created_by' => $data['created_by_contributor']
+                                    ];
+
+                                    array_push($data['project_contributors'], $contributor);
+                                }
+
+                        }
+                    }
+
+                    $data['project_tickets'] = [
+                        [
+                            'project_ticket_path' => Text::uuid(),
+                            'project_ticket_content' => $data['project_indices']
+                        ]
+                    ];
+
+
+
+                break;
+
+                default:
+
+                break;
+            }
+
+        }
+    }
+
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
@@ -116,6 +208,7 @@ class ProjectsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['project_type_id'], 'ProjectTypes'));
+        $rules->add($rules->existsIn(['user_account_id'], 'UserAccounts'));
 
         return $rules;
     }

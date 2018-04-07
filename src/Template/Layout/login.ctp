@@ -41,7 +41,10 @@ $pageDescription = 'Orange Security Projects';
     <!-- Load angular app here -->
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-1.11.2.min.js"
+  integrity="sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA="
+  crossorigin="anonymous"></script>
     <?= $this->Html->script('../node_modules/angular/angular.min') ?>
     <?= $this->Html->script('../node_modules/toastr/build/toastr.min') ?>
 

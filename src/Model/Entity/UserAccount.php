@@ -2,6 +2,9 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
+
+
 
 /**
  * UserAccount Entity
@@ -20,6 +23,8 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Role $role
+ * @property \App\Model\Entity\ProjectContributor[] $project_contributors
+ * @property \App\Model\Entity\Project[] $projects
  */
 class UserAccount extends Entity
 {
@@ -33,6 +38,14 @@ class UserAccount extends Entity
      *
      * @var array
      */
+
+    public function _setUserAccountPassword($value){
+            if (strlen($value)) {
+            $hasher = new DefaultPasswordHasher();
+            return $hasher->hash($value);
+            }
+    }
+
     protected $_accessible = [
         'user_account_username' => true,
         'user_account_password' => true,
@@ -43,8 +56,11 @@ class UserAccount extends Entity
         'deleted' => true,
         'created_by' => true,
         'user_id' => true,
+        'user_account_avatar_candidate' => true,
         'role_id' => true,
         'user' => true,
-        'role' => true
+        'role' => true,
+        'project_contributors' => true,
+        'projects' => true
     ];
 }

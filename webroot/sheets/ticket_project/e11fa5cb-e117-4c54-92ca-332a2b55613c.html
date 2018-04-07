@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/var/www/oci_design_project/webroot/">
+
+    <link href="node_modules/bulma/custom_bulma.css" type="text/css" rel="stylesheet" />
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Ticket Projet
+    </title>
+	<style>
+			@media print {
+			  .new-page {
+			    page-break-before: always;
+			  }
+			}
+	</style>
+</head>
+<body>
+
+<div class="container">
+    <img src="img/assets/chartkit/oci_web_project_logo_4.png" width="150px" alt="">
+    <h1 class="title is-mar-top-30">
+        Ticket Création Projet - 19-03-2018 à 14:26:52    </h1>
+
+    <h2 class="has-text-semibold is-mar-top-20 is-mar-bot-20 has-text-weight-semibold is-size-5"><strong>Créateur: RIEHL Emmanuel - Ingénieur Sécurity By Design Ext/DDT/DSDT</strong></h2>
+
+    <h2 class="is-size-4 has-text-weight-semibold">Verdict</h2>
+    <article style="border: 3px solid orange;" class="is-pad-full-10">
+        <p>
+            Après analyse il est retenu que le projet visit management system 
+			 			             <strong>sera audité par le pôle séccurity by Design</strong>  car il répond aux critères d'éligibilité édictés en la matière (se réferer plus bas pour en avoir connaissance, le cas échéant).
+			  
+        </p>
+    </article>
+    <div>
+
+    <h2 class="is-size-4 has-text-weight-semibold is-mar-top-30">Formulaire récapitulatif</h3>
+
+    <form name="createProjectForm">
+        <div class="field is-horizontal is-mar-top-30">
+            <h1 class="subtitle has-text-weight-semibold">
+                  Nom du Projet
+            </h1>
+			VISIT MANAGEMENT SYSTEM        </div>
+        <div class="field is-horizontal">
+            <h1 class="subtitle has-text-weight-semibold">
+                Priorité du projet
+            </h1>
+			P0        </div>
+        <div class="field is-horizontal">
+            <h1 class="subtitle has-text-weight-semibold">
+                Initiateur du projet
+            </h1>
+			OM        </div>
+
+                	                            <!-- Contacts du projet -->
+                            <div class="field is-horizontal" id="actor_area">
+                                       <h1 class="subtitle has-text-weight-semibold">Les contacts du projet </h1> 
+                                </div>
+
+                                <div class="field-body">
+                                    <div class="field" >
+																					<table class="table is-striped is-narrow is-hoverable is-fullwidth">
+												<tbody>
+													<tr class="actor_cadre" ng-repeat="u in users | filter:search_actors">
+														<td>
+																<img width="130px" src="img/assets/admins/photo/riehl.png">
+														</td>
+														<td>
+															  <p>
+														        <strong>RIEHL Emmanuel</strong>
+														        <br>
+																riehlemm@gmail.com																<br>
+																Ingénieur Sécurity By Design Ext/DDT/DSDT <br>
+																Role: Chef Projet														      </p>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										                                      </div>
+                                </div>
+                             </div>
+		             
+        <!-- Indices projet -->
+        <div class="field is-horizontal">
+			    <h1 class="subtitle has-text-weight-semibold">
+					Indices Projet
+			    </h1>
+            <div class="field-body">
+                <!-- is application connected internet? -->
+                <div class="field is-mar-bot-15">
+                    <h3 class="subtitle has-text-weight-semibold">Connectivité Internet</h3>
+                    								Non
+						                </div>
+
+                <!-- is application harmful data? -->
+                <div class="field is-mar-bot-5">
+                    <h3 class="subtitle has-text-weight-semibold">Utilisation de données sensibles?</h3>
+                    								Non
+                    	                </div>
+                <!-- is application used third connexions? -->
+                <div class="field is-mar-bot-15">
+                    <h3 class="subtitle has-text-weight-semibold">Connexions Tierces</h3>
+                    	                    		Oui
+                    	                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Indices projet Suite -->
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label for="" class="label">
+                    &nbsp;
+                </label>
+            </div>
+            <div class="field-body">
+
+                <!-- is application franchise exchanged? -->
+                <div class="field is-mar-bot-15">
+                    <h3 class="subtitle has-text-weight-semibold">Exposition Franchise</h3>
+	                    		                    		Oui
+	                    	                </div>
+
+                <!-- is service for OCI and subs? -->
+                <div class="field is-mar-bot-15">
+                    <h3 class="subtitle has-text-weight-semibold">Service OCI et filiales?</h3>
+	                    		                    		Oui
+	                    	                </div>
+                <!-- is application used third connexions? -->
+                <div class="field is-mar-bot-15">
+                    <h3 class="subtitle has-text-weight-semibold">Centralisation de données client?</h3>
+	                    		                    		Oui
+	                    	                </div>
+
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+    
+	</div>
+	    </div>
+<div class="new-page">
+		    <h2 class="is-size-4 has-text-weight-semibold is-mar-top-50">Critères d'éligibilité</h2>
+		<p>D'après la convention ABCD signé le ABCD, est défini projet critique:</p>
+		<p>
+			<ul>
+				<li>Les projets PO</li>
+				<li>Les projets de Digitalisation</li>
+				<li>Les projets OM</li>
+				<li>Les projets Marketing</li>
+				<li>Les projets ouverts au public via Internet</li>
+				<li>Les projets exposés aux franchises</li>
+				<li>Les projets manipulants et/ou centralisant des données sensibles</li>
+				<li>Les projets à destination de OCI et ses filiales</li>
+			</ul>
+		</p>
+</div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

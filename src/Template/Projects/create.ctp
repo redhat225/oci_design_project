@@ -42,14 +42,14 @@
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="" class="label">
-					Type du projet
+					Initiateur du projet
 				</label>
 			</div>
 			<div class="field-body">
 				<div class="field">
 					<div class="control has-icons-left">
 						    <div class="select">
-						      <select required ng-model="project.project_type_id" ng-options="p.id as p.project_type_denomination for p in project_types">
+						      <select required ng-model="project.project_type_id" ng-options="p.project_type_denomination for p in project_types">
 						      </select>
 						    </div>
 						    <div class="icon is-small is-left">
@@ -59,6 +59,61 @@
 				</div>
 			</div>
 		</div>
+
+					        <!-- Contacts du projet -->
+							<div class="field is-horizontal" id="actor_area">
+								<div class="field-label">
+									<label for="" class="label">
+										Les contacts du projet
+									</label>
+								</div>
+
+								<div class="field-body">
+									<div class="field" >
+										<button id="add_actor_trigger" ng-click="openActorModal()" type="button" class="button is-oci">
+											<span class="icon">
+												<i class="fas fa-plus"></i>
+											</span>
+											<span>Ajouter un collaborateur</span>
+										</button>
+									</div>
+								</div>
+					         </div>
+
+		
+		<!-- project contributors  -->
+		<div class="field is-horizontal" ng-repeat="u in users" ng-if="u.is_selected">
+			<div class="field-label">
+				<label>&nbsp;</label>
+			</div>
+
+			<div class="field-body">
+				<div class="field" >
+					 <div class="control">
+					 		<input type="text" class="input" readonly value="{{u.user_fullname}}">
+					 </div>
+				</div>
+				<div class="field">
+					<div class="control">
+						<div class="select">
+						    <select required ng-model="u.assigned_role" ng-options="r.role_denomination for r in roles"></select>
+						</div>
+
+					</div>
+				</div>
+				<div class="field">
+					<div class="control">
+						<button class="button is-danger is-outlined" ng-click="retireActorSheetObject(u)">
+							<span class="icon">
+								<i class="fas fa-times"></i>
+							</span>
+							<span>Effacer</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- Checkbox wether to create or not  -->
 		<div class="field is-horizontal">
 			<div class="field-label">
@@ -134,6 +189,68 @@
 
 			</div>
 		</div>
+
+
+
+		<!-- Indices projet Suite -->
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<label for="" class="label">
+					&nbsp;
+				</label>
+			</div>
+			<div class="field-body">
+
+				<!-- is application franchise exchanged? -->
+				<div class="field">
+					<h3 class="subtitle">Exposition Franchise</h3>
+					<div class="control">
+					  <label class="radio">
+					    <input type="radio" required value="true" ng-model="project.indices.project_is_franchise_exposed" name="project_is_franchise_exposed">
+					    Oui
+					  </label>
+					  <label class="radio">
+					    <input type="radio" required value="false" ng-model="project.indices.project_is_franchise_exposed" name="project_is_franchise_exposed">
+					    Non
+					  </label>
+					</div>
+				</div>
+
+				<!-- is service for OCI and subs? -->
+				<div class="field">
+					<h3 class="subtitle">Service OCI et filiales?</h3>
+					<div class="control">
+					  <label class="radio">
+					    <input type="radio" required value="true"  ng-model="project.indices.project_is_for_oci_and_subs" name="project_is_for_oci_and_subs">
+					    Oui
+					  </label>
+					  <label class="radio">
+					    <input type="radio" required value="false" ng-model="project.indices.project_is_for_oci_and_subs" name="project_is_for_oci_and_subs">
+					    Non
+					  </label>
+					</div>
+				</div>
+
+				<!-- is application used third connexions? -->
+				<div class="field">
+					<h3 class="subtitle">Centralisation de données client?</h3>
+					<div class="control">
+					  <label class="radio">
+					    <input type="radio" required value="true" ng-model="project.indices.project_is_client_data_centralized" name="project_is_client_data_centralized">
+					    Oui
+					  </label>
+					  <label class="radio">
+					    <input type="radio" required value="false" ng-model="project.indices.project_is_client_data_centralized" name="project_is_client_data_centralized">
+					    Non
+					  </label>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+
 		<!-- Validation  -->
 		<div class="field is-horizontal">
 			<div class="field-label">
@@ -155,4 +272,6 @@
 			</div>
 		</div>
 	</form>
+	<?= $this->element('Projects/modal_add_actor') ?>
+	<?= $this->element('Projects/modal_project_fail') ?>
 </div>

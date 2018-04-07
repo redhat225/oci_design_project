@@ -28672,6 +28672,9 @@
 .is-position-absolute {
   position: absolute; }
 
+.is-position-fixed {
+  position: fixed; }
+
 input {
   height: 40px !important;
   border-radius: 0px !important;

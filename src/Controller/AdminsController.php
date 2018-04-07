@@ -37,7 +37,7 @@ class AdminsController extends AppController
 
     public function initialize(){
         parent::initialize();
-        $this->Auth->allow(['login','logout','forgot']);
+        $this->Auth->allow(['login','logout','forgot','tour']);
         if($this->request->session()->read('Auth')){
             if($this->request->is('ajax')){
 
@@ -50,13 +50,13 @@ class AdminsController extends AppController
                 }
             }
         }else{
-            // if($this->request->is('get')){
-            //     if(!$this->Cookie->check('WelcomePca')){
-            //         $this->Cookie->configKey('WelcomePca','expires','1 month');
-            //         $this->Cookie->write('WelcomePca','yes Man!!!');
-            //         return $this->redirect(['controller'=>'Admins','action'=>'welcome']);
-            //     }
-            // }
+            if($this->request->is('get')){
+                if(!$this->Cookie->check('WelcomeTour')){
+                    $this->Cookie->configKey('WelcomeTour','expires','1 month');
+                    $this->Cookie->write('WelcomeTour','yes Man!!!');
+                    return $this->redirect(['controller'=>'Admins','action'=>'tour']);
+                }
+            }
         }
     }
 
@@ -65,6 +65,11 @@ class AdminsController extends AppController
     }
 
     public function index(){
+    }
+
+
+    public function tour(){
+        $this->viewBuilder()->layout('tour');
     }
 
     public function login(){
@@ -107,6 +112,7 @@ class AdminsController extends AppController
     }
 
     public function logout(){
+        $this->Cookie->delete('WelcomeTour');
         return $this->redirect($this->Auth->logout());
     }
 

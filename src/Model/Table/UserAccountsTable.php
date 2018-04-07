@@ -5,12 +5,19 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Event\Event;
+use ArrayObject;
+use Cake\Utility\Text;
+use Cake\Auth\DefaultPasswordHasher;
+use Cake\Filesystem\File;
+use Cake\Network\Exception;
 /**
  * UserAccounts Model
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsTo $Roles
+ * @property \App\Model\Table\ProjectContributorsTable|\Cake\ORM\Association\HasMany $ProjectContributors
+ * @property \App\Model\Table\ProjectsTable|\Cake\ORM\Association\HasMany $Projects
  *
  * @method \App\Model\Entity\UserAccount get($primaryKey, $options = [])
  * @method \App\Model\Entity\UserAccount newEntity($data = null, array $options = [])
@@ -49,6 +56,12 @@ class UserAccountsTable extends Table
             'foreignKey' => 'role_id',
             'joinType' => 'INNER'
         ]);
+        $this->hasMany('ProjectContributors', [
+            'foreignKey' => 'user_account_id'
+        ]);
+        $this->hasMany('Projects', [
+            'foreignKey' => 'user_account_id'
+        ]);
     }
 
     /**
@@ -67,7 +80,8 @@ class UserAccountsTable extends Table
             ->scalar('user_account_username')
             ->maxLength('user_account_username', 20)
             ->requirePresence('user_account_username', 'create')
-            ->notEmpty('user_account_username');
+            ->notEmpty('user_account_username')
+            ->add('user_account_username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('user_account_password')
@@ -93,8 +107,87 @@ class UserAccountsTable extends Table
             ->requirePresence('created_by', 'create')
             ->notEmpty('created_by');
 
+        //custom fields validation
+        $validator
+            ->add('user_account_avatar_candidate', 'file', [
+                'rule' => ['mimeType', ['image/jpeg','image/jpg','image/png','image/bitmap','image/gif']],
+                'on' => function($context){
+
+                return (!empty($context['user_account_avatar_candidate'])|| !empty($context['data']['user_account_avatar_candidate']) );
+                }
+            ])->add('user_account_avatar_candidate', 'fileSize',[
+                'rule' => ['fileSize', '<', '3MB'],
+                'on' => function($context){
+                    return (!empty($context['user_account_avatar_candidate']) || !empty($context['data']['user_account_avatar_candidate']));
+
+                }
+            ]);
+
+
         return $validator;
     }
+
+   public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options){
+
+        if(isset($data['action'])){
+            switch($data['action']){
+                case 'create':
+
+                break;
+
+                case 'edit-profile':
+                    if(isset($data['profile_accounts'])){
+                        $account_credentials = $data['profile_accounts'][0];
+                        $hasher = new DefaultPasswordHasher();
+                        if($hasher->check($account_credentials['account_password_old'],$data['old_password']))
+                            $data['user_account_password'] = $account_credentials['account_password_new'];
+                        else
+                              throw new Exception\ForbiddenException(__('forbidden'));
+                    }
+                break;
+
+                case 'edit-admin':
+                
+                break;
+            }
+        }
+   }
+
+    public function beforeSave($event, $entity, $options){
+        if($entity->isNew())
+        {
+            if(isset($entity->user_account_avatar_candidate))
+            {
+                //save profile photo
+                $target = Text::uuid().'.'.strtolower(pathinfo($entity->user_account_avatar_candidate['name'],PATHINFO_EXTENSION));
+                if(move_uploaded_file($entity->user_account_avatar_candidate['tmp_name'], WWW_ROOT.'img/assets/admins/avatar/'.$target))
+                {
+                    //assign right value to user_account_avatar
+                    $entity->user_account_avatar = $target;
+                }else
+                  return false;
+            }
+
+        }else
+        {
+            if(isset($entity->user_account_avatar_candidate) && $entity->user_account_avatar_candidate!=='null')
+            {
+                  //replace photo
+                $old_path_photo = WWW_ROOT.'img/assets/admins/avatar/'.$entity->user_account_avatar;
+                  if(file_exists($old_path_photo))
+                       unlink($old_path_photo);
+                   $target = Text::uuid().'.'.strtolower(pathinfo($entity->user_account_avatar_candidate['name'],PATHINFO_EXTENSION));
+                    if(move_uploaded_file($entity->user_account_avatar_candidate['tmp_name'], WWW_ROOT.'img/assets/admins/avatar/'.$target)){
+                        //assign right value to user_account_avatar
+                        $entity->user_account_avatar = $target;
+                    }else
+                      return false;
+            }
+        }
+    }
+
+
+
 
     /**
      * Returns a rules checker object that will be used for validating
@@ -105,12 +198,12 @@ class UserAccountsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['user_account_username']));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['role_id'], 'Roles'));
 
         return $rules;
     }
-
 
     public function findAuth(Query $query, array $options){
          $query->select(['id','user_account_username','user_account_password'])
@@ -119,5 +212,4 @@ class UserAccountsTable extends Table
                ->Where(['user_account_is_active'=>1]);
         return $query;
     }
-
 }

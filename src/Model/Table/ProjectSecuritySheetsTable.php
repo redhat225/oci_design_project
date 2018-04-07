@@ -5,6 +5,12 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Event\Event;
+use ArrayObject;
+use Cake\ORM\TableRegistry;
+use Cake\Network\Exception;
+use \Exception as MainException;
+use Cake\Utility\Text;
 
 /**
  * ProjectSecuritySheets Model
@@ -21,6 +27,10 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
+
+
+
+
 class ProjectSecuritySheetsTable extends Table
 {
 
@@ -52,6 +62,99 @@ class ProjectSecuritySheetsTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
+
+
+    public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options){
+        if(isset($data)){
+            switch($data['action']){
+                case 'create':
+                    $tmp_data = $data;
+
+                    $data['project_id'] = $tmp_data['project-sheet']['project']['id'];
+                    unset($data['project-sheet']['project']);
+               
+                       
+                    // save network diagram if exist
+                    if(isset($data['project-sheet']['section1']['network_diagram']) && $data['project-sheet']['section1']['network_diagram']!='null'){
+                            try{
+                                $data['network_diagram'] = $data['project-sheet']['section1']['network_diagram'];
+
+                                $data['project-sheet']['section1']['network_diagram_path'] =  Text::uuid().'.'.strtolower(pathinfo($data['project-sheet']['section1']['network_diagram']['name'],PATHINFO_EXTENSION));
+
+                                $data['network_diagram_path'] = $data['project-sheet']['section1']['network_diagram_path'];
+                            }catch(MainException $e){
+                                throw new Exception\BadRequestException(__('MimeType Unrecognized'));
+                            }
+                    }
+
+
+                    $data['sheet_content'] = json_encode($tmp_data['project-sheet']);         
+
+                break;
+            }
+        }
+    }
+
+    public function beforeSave($event, $entity, $options){
+
+            // save network diagram
+            if(isset($entity->network_diagram))
+            {
+                                    if(!move_uploaded_file($entity->network_diagram['tmp_name'], WWW_ROOT.'sheets_assets/security_sheets/'.$entity->network_diagram_path))
+                                    return false;
+            }
+
+            if(isset($entity->contributors)){
+                if(count($entity->contributors)>0){
+                    // check contributors
+                    $project_contributor_table = TableRegistry::get('ProjectContributors');
+                    $ProjectContributorsMapList = [];
+                    $base_contributors = $project_contributor_table->find()->where(['project_id'=>$entity->project_id]);
+                    foreach ($base_contributors as $base_contributor) {
+                       array_push($ProjectContributorsMapList,$base_contributor->user_account_id);
+                    }
+                    foreach ($entity->contributors as $runtime_contributor){
+                              // update contributor
+                              if(in_array($runtime_contributor['user_accounts'][0]['id'], $ProjectContributorsMapList)){
+                                    $saved_contributor = $project_contributor_table->find()->where(['user_account_id'=>$runtime_contributor['user_accounts'][0]['id']])->first();
+                                    $saved_contributor->project_contributor_role_id = $runtime_contributor['assigned_role'];
+                                    $saved_contributor->dirty('project_contributor_role_id',true);
+                                    if(!$project_contributor_table->save($saved_contributor))
+                                        throw new Exception\BadRequestException(__('Error saved old contributor'));
+                              }
+
+                              // Create contributor
+                              if(!in_array($runtime_contributor['user_accounts'][0]['id'], $ProjectContributorsMapList)){
+                                  if($runtime_contributor['is_selected'] == 'true'){
+                                                $new_contributor = $project_contributor_table->newEntity();
+                                                $new_contributor->project_id = $entity->project_id;
+                                                $new_contributor->user_account_id = $runtime_contributor['user_accounts'][0]['id'];
+                                                $new_contributor->project_contributor_role_id = $runtime_contributor['assigned_role'];
+                                                $new_contributor->created_by = $entity->created_by;
+                                                     if(!$project_contributor_table->save($new_contributor))
+                                                         throw new Exception\BadRequestException(__('Error saved new contributor'));
+                                  }
+                              }
+
+                        }
+
+                }
+            }
+
+
+
+      
+        if($entity->isNew())
+        {
+
+
+        }
+
+    }
+
+
+
+    
     public function validationDefault(Validator $validator)
     {
         $validator
@@ -71,6 +174,21 @@ class ProjectSecuritySheetsTable extends Table
         $validator
             ->dateTime('deleted')
             ->allowEmpty('deleted');
+
+       $validator
+            ->add('network_diagram', 'file', [
+                'rule' => ['mimeType', ['image/jpeg','image/jpg','image/png','image/bitmap','image/gif']],
+                'on' => function($context){
+
+                return (!empty($context['network_diagram'])|| !empty($context['data']['network_diagram']) );
+                }
+            ])->add('network_diagram', 'fileSize',[
+                'rule' => ['fileSize', '<', '3MB'],
+                'on' => function($context){
+                    return (!empty($context['network_diagram']) || !empty($context['data']['network_diagram']));
+
+                }
+            ]);
 
         return $validator;
     }

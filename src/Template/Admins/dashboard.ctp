@@ -1,25 +1,4 @@
 <section >
-<!-- 	<h3 class="subtitle"><span class="icon">i.fas.fa-</span>Raccourcis</h3>
-	<div class="tile is-ancestor">
-
-	  <div class="tile is-parent is-8">
-			<div class="tile is-child">
-				    <div class="box is-radiusless is-pad-full-0">
-				    	 <div class="panel-heading oci-black-b">
-						    <span class="has-text-white">Projets</span>
-						  </div>
-						<div ui-sref="admins.projects.create" class="button is-oci is-outlined is-borderless is-none-border is-fullwidth is-radiusless">
-							<span class="icon is-large">
-								<i class="fa fa-plus"></i>
-							</span>
-							<span>Créer un projet</span>
-						</div>
-				    </div>
-		  	</div>
-	  </div>
-
-    </div> -->			
-
 	<div class="level">
 		<div class="level-left">
 			<div class="level-item">
@@ -28,14 +7,6 @@
 				</span>
 				<span class="has-text-intercoton-green has-text-weight-semibold is-pad-lft-20">Dashboard</span> 	
 			</div>
-		</div>
-		<div class="level-right">
-			<span class="icon">
-					<i class="fas fa-2x fa-chart-line"></i>
-			</span>
-			<span class="level-item has-text-weight-semibold has-text-intercoton-green is-pad-lft-10"> Statistiques Brèves</span>
-
-			<button class="button" ui-sref="admins.projects-sheets.create">Fiche projet</button>
 		</div>
 	</div>
 		<!-- Qucik Stats Preview - Observator & system -->

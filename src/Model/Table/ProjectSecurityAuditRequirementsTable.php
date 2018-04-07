@@ -5,6 +5,12 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Event\Event;
+use ArrayObject;
+use Cake\ORM\TableRegistry;
+use Cake\Network\Exception;
+use \Exception as MainException;
+use Cake\Utility\Text;
 
 /**
  * ProjectSecurityAuditRequirements Model
@@ -72,7 +78,128 @@ class ProjectSecurityAuditRequirementsTable extends Table
             ->dateTime('deleted')
             ->allowEmpty('deleted');
 
+       $validator
+            ->add('architecture_application', 'file', [
+                'rule' => ['mimeType', ['image/jpeg','image/jpg','image/png','image/bitmap','image/gif']],
+                'on' => function($context){
+
+                return (!empty($context['architecture_application'])|| !empty($context['data']['architecture_application']) );
+                }
+            ])->add('architecture_application', 'fileSize',[
+                'rule' => ['fileSize', '<', '3MB'],
+                'on' => function($context){
+                    return (!empty($context['architecture_application']) || !empty($context['data']['architecture_application']));
+
+                }
+            ]);
+
+       $validator
+            ->add('architecture_network', 'file', [
+                'rule' => ['mimeType', ['image/jpeg','image/jpg','image/png','image/bitmap','image/gif']],
+                'on' => function($context){
+
+                return (!empty($context['architecture_network'])|| !empty($context['data']['architecture_network']) );
+                }
+            ])->add('architecture_network', 'fileSize',[
+                'rule' => ['fileSize', '<', '3MB'],
+                'on' => function($context){
+                    return (!empty($context['architecture_network']) || !empty($context['data']['architecture_network']));
+
+                }
+            ]);
+
+       $validator
+            ->add('architecture_functional', 'file', [
+                'rule' => ['mimeType', ['image/jpeg','image/jpg','image/png','image/bitmap','image/gif']],
+                'on' => function($context){
+
+                return (!empty($context['architecture_functional'])|| !empty($context['data']['architecture_functional']) );
+                }
+            ])->add('architecture_functional', 'fileSize',[
+                'rule' => ['fileSize', '<', '3MB'],
+                'on' => function($context){
+                    return (!empty($context['architecture_functional']) || !empty($context['data']['architecture_functional']));
+
+                }
+            ]);
+
+
         return $validator;
+    }
+
+   public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options){
+        if(isset($data)){
+            switch($data['action']){
+                case 'create':
+                    $tmp_data = $data;
+
+                    $data['project_id'] = $tmp_data['requirement']['project']['id'];
+                    unset($data['requirement']['project']);
+
+                    // check architecture diagram if exist
+                    // application
+                    if(isset($data['requirement']['architecture']['application']) && $data['requirement']['architecture']['application']!='null'){
+                            try{
+                                $data['architecture_application'] = $data['requirement']['architecture']['application'];
+
+                                $data['requirement']['architecture']['application_path'] =  Text::uuid().'.'.strtolower(pathinfo($data['requirement']['architecture']['application']['name'],PATHINFO_EXTENSION));
+
+                                $data['architecture_application_path'] = $data['requirement']['architecture']['application_path'];
+                            }catch(MainException $e){
+                                throw new Exception\BadRequestException(__('MimeType Unrecognized'));
+                            }
+                    }
+                    // network
+                    if(isset($data['requirement']['architecture']['network']) && $data['requirement']['architecture']['network']!='null'){
+                            try{
+                                $data['architecture_network'] = $data['requirement']['architecture']['network'];
+
+                                $data['requirement']['architecture']['network_path'] =  Text::uuid().'.'.strtolower(pathinfo($data['requirement']['architecture']['network']['name'],PATHINFO_EXTENSION));
+
+                                $data['architecture_network_path'] = $data['requirement']['architecture']['network_path'];
+                            }catch(MainException $e){
+                                throw new Exception\BadRequestException(__('MimeType Unrecognized'));
+                            }
+                    }
+                    // functional
+                    if(isset($data['requirement']['architecture']['functional']) && $data['requirement']['architecture']['functional']!='null'){
+                            try{
+                                $data['architecture_functional'] = $data['requirement']['architecture']['functional'];
+
+                                $data['requirement']['architecture']['functional_path'] =  Text::uuid().'.'.strtolower(pathinfo($data['requirement']['architecture']['functional']['name'],PATHINFO_EXTENSION));
+
+                                $data['architecture_functional_path'] = $data['requirement']['architecture']['functional_path'];
+                            }catch(MainException $e){
+                                throw new Exception\BadRequestException(__('MimeType Unrecognized'));
+                            }
+                    }
+                    $data['audit_requirement_content'] = json_encode($tmp_data['requirement']);
+                break;
+            }
+        }   
+    }
+
+    public function beforeSave($event, $entity, $options){
+            if($entity->isNew()){
+                // save network diagram
+                if(isset($entity->architecture_application))
+                {
+                                        if(!move_uploaded_file($entity->architecture_application['tmp_name'], WWW_ROOT.'sheets_assets/audit_security_requirements/'.$entity->architecture_application_path))
+                                        return false;
+                }
+
+                if(isset($entity->architecture_network))
+                {
+                                        if(!move_uploaded_file($entity->architecture_network['tmp_name'], WWW_ROOT.'sheets_assets/audit_security_requirements/'.$entity->architecture_network_path))
+                                        return false;
+                }
+
+                if(isset($entity->architecture_functional))
+                {
+                                        if(!move_uploaded_file($entity->architecture_functional['tmp_name'], WWW_ROOT.'sheets_assets/audit_security_requirements/'.$entity->architecture_functional_path))
+                                        return false;
+                }
+            }
     }
 
     /**

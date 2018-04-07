@@ -4,7 +4,7 @@
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
  * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
+ * For full copyright and license information, please   see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -16,9 +16,10 @@
 $pageDescription = 'Orange Security Projects';
 ?>
 <!DOCTYPE html>
+
 <html>
 <head>
-    <?= $this->Html->charset() ?>
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <?= $pageDescription ?>:
@@ -34,9 +35,12 @@ $pageDescription = 'Orange Security Projects';
     <?= $this->Html->css('../node_modules/angular-colorbox/themes/dark/colorbox-darktheme') ?>
     <?= $this->Html->css('loading-bar-custom') ?>
     <?= $this->Html->css('../js/fliptimer/fliptimer/fliptimer') ?>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.css">
 
     <?= $this->fetch('css') ?>
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <?= $this->Html->script('jquery.min') ?>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.1/fullcalendar.min.js"></script>
     <?= $this->Html->script('../bower_components/tinymce/tinymce') ?>
     <?= $this->Html->script('../node_modules/angular-colorbox/bower_components/jquery-colorbox/jquery.colorbox') ?>
     
@@ -51,20 +55,25 @@ $pageDescription = 'Orange Security Projects';
     <?= $this->Html->script('../node_modules/chart.js/dist/Chart.min') ?>
     <?= $this->Html->script('../node_modules/angular-chart.js/dist/angular-chart.min') ?>
     <?= $this->Html->script('../node_modules/angular-loading-bar/src/loading-bar') ?>
+    
+    <?= $this->Html->script('../node_modules/angular-fullcalendar/dist/angular-fullcalendar') ?>
 
     <?= $this->Html->script('fliptimer/fliptimer/jquery.fliptimer') ?>
-    <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <?= $this->Html->script('font_awesome') ?>
+
 
     <base href="/admins/">
 </head>
 <body ng-app="oci">
     <section ui-view></section>
+
+
+
     <!-- Angular app goes here -->
     <?= $this->Html->script('Admin/app') ?>
     <?= $this->Html->script('Admin/controllers') ?>
     <?= $this->Html->script('Admin/services') ?>
     <?= $this->Html->script('Admin/directives') ?>
     <?= $this->fetch('script') ?>
-
 </body>
 </html>

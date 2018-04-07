@@ -24,7 +24,11 @@ use \Exception as MainException;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Cake\Utility\Security;
+use Cake\View\View;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Filesystem\Folder;
+use Pheanstalk\Pheanstalk;
+
 /**
  * Static content controller
  *
@@ -36,6 +40,7 @@ class ProjectSheetsController extends AppController
 {
     public function initialize(){
         parent::initialize();   
+        $this->loadModel('ProjectSecuritySheets');
     }
 
     public function beforeFilter(Event $event){
@@ -51,21 +56,72 @@ class ProjectSheetsController extends AppController
             if($this->request->is('post')){
                 $data = $this->request->data;
                 $data['action'] = 'create';
-                $project = $this->Projects->newEntity($data);
-
-                if($this->Projects->save($project)){
+                $data['created_by'] = $this->request->session()->read('Auth.User.id');
+                $project_sheet = $this->ProjectSecuritySheets->newEntity($data,['associated'=>['Projects']]);
+                if($this->ProjectSecuritySheets->save($project_sheet)){
                     $this->RequestHandler->renderAs($this, 'json');
                     $response = 'ok';
                     $this->set(compact('response'));
                     $this->set('_serialize',['response']);
-                }else
+                }else{
                   throw new Exception\BadRequestException(__('error'));
+                }
             }
         }
     }
 
-    public function edit(){}
+    public function edit(){
+        if($this->request->is('ajax')){
+            if($this->request->is('post')){
+                $data = $this->request->data;
+                debug($data);
+                die();
+            }
+        }
+    }
     public function view(){}
+
+    public function get(){
+        if($this->request->is('ajax')){
+            if($this->request->is('get')){
+                $security_sheet = $this->ProjectSecuritySheets->get($this->request->query['id'],['contain'=>['Projects.ProjectContributors.UserAccounts.Users']]);
+                $security_sheet->sheet_content = json_decode($security_sheet->sheet_content);
+                $this->RequestHandler->renderAs($this, 'json');
+                $this->set(compact('security_sheet'));
+                $this->set('_serialize',['security_sheet']);
+            }
+        }
+    }
+
+    public function preview($sheet_id = null){
+        $id = $this->request->params['sheet_id'];
+
+        $project_sheet = $this->ProjectSecuritySheets->get($id,['contain'=>['Projects.ProjectContributors.ProjectContributorRoles','Projects.ProjectContributors.UserAccounts.Users','Projects.ProjectTypes']]);
+        $project_sheet->sheet_content = json_decode($project_sheet->sheet_content);
+            // Crypto options
+            $this->viewBuilder()->options([
+                'pdfConfig' => [
+                    'protect' => true,
+                    'userPassword' =>  'orange',
+                    'ownerPassword' => 'RiehlEmmanuel00',
+                    'permissions' => []
+                ]
+            ]);
+            // load security-sheets time project infos
+            $this->loadModel('Projects');
+            $project_sheet_newer = $this->ProjectSecuritySheets->find()->select(['created'])->where(['project_id'=>$project_sheet->project->id])->order(['created'=>'DESC'])->first();
+
+            $project_sheet_older = $this->ProjectSecuritySheets->find()->select(['created'])->where(['project_id'=>$project_sheet->project->id])->order(['created'=>'ASC'])->first();
+            // Load creator infos
+            $this->loadModel('UserAccounts');
+            $creator = $this->UserAccounts->get($project_sheet->created_by,['contain'=>['Users']]);
+$title = 'Fiche Sécurité Projet';
+            $this->set(compact('project_sheet','creator','project_sheet_newer','project_sheet_older','title'));
+            $this->set('_serialize',['project_sheet','creator','project_sheet_newer','project_sheet_older','title']);
+    }
+    public function test(){
+        $this->viewBuilder()->layout('blank');
+    }
 
 
 }

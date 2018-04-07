@@ -207,6 +207,26 @@ Type::build('timestamp')
  *
  */
   Plugin::load('Migrations');
+Plugin::load('CakePdf', ['bootstrap' => true]);
+
+// CakePdf Custom Configuration
+Configure::write('CakePdf',[
+        'engine' => [
+            'className' => 'CakePdf.WkHtmlToPdf',
+            'binary' => '/usr/bin/wkhtmltopdf',
+            'options' => [
+                'print-media-type' => false,
+                'outline' => true,
+                'dpi' => 96,
+                'footer-line' =>true,
+                'javascript-delay' => 800
+            ]
+        ],
+        'crypto' => [
+            'className' => 'CakePdf.Pdftk',
+            'binary' => '/usr/bin/pdftk',
+        ]
+]);
 /*
  * Only try to load DebugKit in development mode
  * Debug Kit should not be installed on a production system

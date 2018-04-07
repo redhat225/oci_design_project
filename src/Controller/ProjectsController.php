@@ -26,6 +26,9 @@ use Cake\Cache\Cache;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Cake\Utility\Security;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Utility\Text;
+use Cake\View\View;
+
 /**
  * Static content controller
  *
@@ -52,18 +55,54 @@ class ProjectsController extends AppController
             if($this->request->is('post')){
                 $data = $this->request->data;
                 $data['action'] = 'create';
-                $project = $this->Projects->newEntity($data);
+                $data['created_by_contributor'] = $this->request->session()->read('Auth.User.id');
+                $project = $this->Projects->newEntity($data,['associated'=>['ProjectContributors','ProjectTickets']]);
 
                 if($this->Projects->save($project)){
+                // Generate project ticket_path
+                    try{    
+                        $date = new \DateTime('NOW');
+                        $formatted_date = $date->format('d-m-Y à H:i:s');
+                        $this->auto_render = false;
+                        $view =new View($this->request,$this->response,null);
+                        $view->viewPath='Projects';
+                        $view->layout = false;
+                        // Get Creator Project
+                        $this->loadModel('UserAccounts');
+                        $user_account =  $this->UserAccounts->find()->where(['UserAccounts.id'=>$data['created_by_contributor']])
+                                         ->contain(['Users'])
+                                         ->first();
+
+                        $view->set(compact('project','data','formatted_date','user_account'));
+                        $view_output_ticket_project = $view->render('ticket_project'); 
+                        $ticket_path = $project->project_tickets[0]->project_ticket_path;
+
+                        $path = WWW_ROOT.'sheets/ticket_project/'.$ticket_path.'.html';
+                        file_put_contents($path, $view_output_ticket_project);
+
+                        shell_exec('wkhtmltopdf '.WWW_ROOT.'sheets/ticket_project/'.$ticket_path.'.html '.WWW_ROOT.'sheets/ticket_project/'.$ticket_path.'.pdf');
+
+                        $is_generate_project_ticket = true;
+                    }catch(\MainException $e){
+                        $is_generate_project_ticket = false;
+                    }       
+
                     $this->RequestHandler->renderAs($this, 'json');
-                    $response = $project->id;
+                    $response = ['id'=>$project->id,'criticity'=>$project->project_criticity,'ticket_path'=>$ticket_path] ; 
                     $this->set(compact('response'));
                     $this->set('_serialize',['response']);
                 }else
+                {
                   throw new Exception\BadRequestException(__('error'));
+                }
             }
         }
     }
+
+    public function test($instance_id = null){
+
+    }
+
 
     public function addActorReport(){
         if(!Cache::read('token','token_add_actor'))
@@ -76,8 +115,90 @@ class ProjectsController extends AppController
         $this->set('_serialize',['token']);
     }
 
+    public function addActorReportContributors(){
+        if(!Cache::read('token','token_add_actor_contributor'))
+            Cache::write('token',1,'token_add_actor_contributor');
+        else
+            Cache::write('token',(Cache::read('token','token_add_actor_contributor')+1),'token_add_actor_contributor');
+
+        $token = Cache::read('token','token_add_actor_contributor');
+        $this->set(compact('token'));
+        $this->set('_serialize',['token']);
+    }
+
+
     public function edit(){}
-    public function view(){}
+
+    public function view(){
+        if($this->request->is('ajax')){
+            if($this->request->is('get')){
+            }
+        }
+    }
+
+    public function get(){
+        if($this->request->is('ajax')){
+            if($this->request->is('get')){
+                $query_data = $this->request->query;
+                $project = $this->Projects->get($query_data['id'],['contain'=>['ProjectContributors.UserAccounts.Users','ProjectContributors.ProjectContributorRoles']]);
+
+                $this->RequestHandler->renderAs($this, 'json');
+                $this->set(compact('project'));
+                $this->set('_serialize',['project']);
+            }
+        }
+    }
+
+    public function ticket(){
+        $this->viewBuilder()->layout('blank');
+    }
+
+    public function preview($project_id = null){
+        $id = $this->request->params['project_id'];
+
+        $project = $this->Projects->get($id,['contain'=>['ProjectContributors.ProjectContributorRoles','ProjectContributors.UserAccounts.Users','ProjectTypes']]);
+        $project->project_indices = json_decode($project->project_indices);
+            // Crypto options
+            $this->viewBuilder()->options([
+                'pdfConfig' => [
+                    'protect' => true,
+                    'userPassword' =>  'orange',
+                    'ownerPassword' => 'RiehlEmmanuel00',
+                    'permissions' => []
+                ]
+            ]);
+
+            // Load creator infos
+            $this->loadModel('UserAccounts');
+            $creator = $this->UserAccounts->get($project->user_account_id,['contain'=>['Users']]);
+            $title = 'Ticket Projet';
+            $this->set(compact('project','creator','title'));
+            $this->set('_serialize',['project','creator','title']);
+    }
+
+    public function all(){
+        if($this->request->is('ajax')){
+            if($this->request->is('get')){
+                $projects = $this->Projects->find()->contain(['UserAccounts.Users','ProjectTypes','ProjectContributors.UserAccounts.Users','ProjectContributors.ProjectContributorRoles','ProjectTickets' => function($query){
+                      return $query->order(['ProjectTickets.created'=>'desc']);
+                },'ProjectSecuritySheets' => function($query){
+                     return $query->order(['ProjectSecuritySheets.created'=>'desc']);
+                },'ProjectSecurityRequirements' => function($query){
+                     return $query->order(['ProjectSecurityRequirements.created'=>'desc']);
+                }, 'ProjectSecurityAuditRequirements' => function($query){
+                     return $query->order(['ProjectSecurityAuditRequirements.created'=>'desc']);
+                }])->order(['Projects.created'=>'desc']);
+
+                foreach ($projects as $key => $value) {
+                    $value->project_indices = json_decode($value->project_indices);
+                }
+
+                $this->RequestHandler->renderAs($this, 'json');
+                $this->set(compact('projects'));
+                $this->set('_serialize',['projects']);
+            }
+        }
+    }
 
 
 }

@@ -38,7 +38,7 @@ class InsertUserMigration extends AbstractMigration
         $user = [
             "id" => $user_id,
             "user_fullname" => "RIEHL Emmanuel",
-            "user_sexe" => "M",
+            "user_sexe" => "H",
             "user_contact" => "87853436",
             "user_email" => "riehlemm@gmail.com",
             "user_photo" => "riehl.png",
@@ -71,7 +71,7 @@ class InsertUserMigration extends AbstractMigration
         $user_account = [
             "id" => Text::uuid(),
             "user_account_username" => "remmanuel225",
-            "user_account_password" => "$2y$10\$sCX9Ubp7waD7D22/mhTwK.FONhMvN0Kb/J4qvMBaHVyov8KxnsPvm",
+            "user_account_password" => '$2y$10$fvMsIN8Y9kbPa1MpqT1ogO7NNw6W/eL6nCJBV8WRmKUgEiROs3uXu',
             "user_account_avatar" => "oci_avatar.png",
             "user_account_is_active" => true,
             "created_by" => $user_id,

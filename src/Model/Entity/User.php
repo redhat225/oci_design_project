@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  * @property \Cake\I18n\FrozenTime $deleted
+ * @property string $user_job
  *
  * @property \App\Model\Entity\UserAccount[] $user_accounts
  */
@@ -38,7 +39,9 @@ class User extends Entity
         'user_photo' => true,
         'created' => true,
         'modified' => true,
+        'user_photo_candidate' => true,
         'deleted' => true,
+        'user_job' => true,
         'user_accounts' => true
     ];
 }

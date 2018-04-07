@@ -8,16 +8,16 @@
 
 
 <div class="columns is-mar-bot-0" style="background: black;" ng-controller="LoginController as logincontroller">
-	<div class="column is-three-fifths is-hidden-mobile is-pad-bot-0 hero is-oci-bottledgreen">
-		<div class="main-left-wrapper" >
+	<div class="column is-three-fifths is-hidden-mobile is-pad-bot-0 hero is-oci-bottledgreen" >
+		<div class="main-left-wrapper">
 		   <?= $this->element('navlogin')?>
 			<div class="main-image" style="margin-top:10%;margin-bottom:10%;">
-				<img src="/img/assets/chartkit/mame_2.png" alt="vector-worker" title="orange-security-spoc" style="max-width:627px;">
+				<img src="/img/assets/chartkit/mame_2.png" alt="vector-worker" title="orange-security-spoc" style="width:78%;">
 			</div>	
 		</div>
 
 	</div>
-	<div class="column is-two-fifths hero is-black">
+	<div class="column is-two-fifths is-12-mobile hero is-black">
 		<div class="section is-medium">
                <div class="has-text-left">
 				   <h1 class="title is-size-1">Mon compte</h1>

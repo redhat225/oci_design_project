@@ -15,8 +15,16 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $deleted
  * @property string $project_indices
  * @property string $project_criticity
+ * @property string $user_account_id
  *
  * @property \App\Model\Entity\ProjectType $project_type
+ * @property \App\Model\Entity\UserAccount $user_account
+ * @property \App\Model\Entity\ProjectContributor[] $project_contributors
+ * @property \App\Model\Entity\ProjectSecurityAuditReport[] $project_security_audit_reports
+ * @property \App\Model\Entity\ProjectSecurityAuditRequirement[] $project_security_audit_requirements
+ * @property \App\Model\Entity\ProjectSecurityRequirement[] $project_security_requirements
+ * @property \App\Model\Entity\ProjectSecuritySheet[] $project_security_sheets
+ * @property \App\Model\Entity\ProjectTicket[] $project_tickets
  */
 class Project extends Entity
 {
@@ -39,6 +47,14 @@ class Project extends Entity
         'deleted' => true,
         'project_indices' => true,
         'project_criticity' => true,
-        'project_type' => true
+        'user_account_id' => true,
+        'project_type' => true,
+        'user_account' => true,
+        'project_contributors' => true,
+        'project_security_audit_reports' => true,
+        'project_security_audit_requirements' => true,
+        'project_security_requirements' => true,
+        'project_security_sheets' => true,
+        'project_tickets' => true
     ];
 }

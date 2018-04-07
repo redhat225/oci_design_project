@@ -1,4 +1,4 @@
-			<div class="field is-horizontal" id="additional_actor_<?= $token ?>">
+			<div class="field is-horizontal is-mar-bot-30" id="additional_actor_<?= $token ?>">
 
 				<div class="field-label">
 					<label for="" class="label">
@@ -22,7 +22,7 @@
 					<!-- remove add actor report area -->
 					<div class="field">
 						<div class="control">
-							<button class="button is-danger" ng-click="destroy_actor_item('#additional_actor_<?= $token ?>','project_contact<?= $token ?>')">
+							<button class="button is-danger is-outlined" ng-click="destroy_actor_item('#additional_actor_<?= $token ?>','project_contact<?= $token ?>')">
 								<span class="icon">
 									<i class="fas fa-times"></i>
 								</span>

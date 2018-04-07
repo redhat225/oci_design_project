@@ -35,6 +35,9 @@ class ProjectSecuritySheet extends Entity
         'created' => true,
         'modified' => true,
         'deleted' => true,
-        'project' => true
+        'project' => true,
+        'network_diagram'=>true,
+        'network_diagram_path' => true,
+        'contributors' => true
     ];
 }

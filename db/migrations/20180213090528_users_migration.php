@@ -1,4 +1,4 @@
-<?php
+Z<?php
 
 use Phinx\Migration\AbstractMigration;
 

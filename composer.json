@@ -9,9 +9,11 @@
         "cakephp/cakephp": "3.5.*",
         "cakephp/migrations": "^1.0",
         "cakephp/plugin-installer": "^1.0",
+        "friendsofcake/cakepdf": "^3.4",
         "josegonzalez/dotenv": "2.*",
         "lcobucci/jwt": "^3.2",
-        "mobiledetect/mobiledetectlib": "2.*"
+        "mobiledetect/mobiledetectlib": "2.*",
+        "pda/pheanstalk": "^3.1"
     },
     "require-dev": {
         "cakephp/bake": "^1.1",

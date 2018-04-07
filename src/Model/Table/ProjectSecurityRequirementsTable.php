@@ -5,6 +5,12 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Event\Event;
+use ArrayObject;
+use Cake\ORM\TableRegistry;
+use Cake\Network\Exception;
+use \Exception as MainException;
+use Cake\Utility\Text;
 
 /**
  * ProjectSecurityRequirements Model
@@ -44,6 +50,21 @@ class ProjectSecurityRequirementsTable extends Table
             'foreignKey' => 'project_id',
             'joinType' => 'INNER'
         ]);
+    }
+
+    public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options){
+        if(isset($data)){
+            switch($data['action']){
+                case 'create':
+                    $tmp_data = $data;
+
+                    $data['project_id'] = $tmp_data['requirement']['project']['id'];
+                    unset($data['requirement']['project']);
+                    $data['requirement_content'] = json_encode($tmp_data['requirement']);         
+
+                break;
+            }
+        }
     }
 
     /**
