@@ -7,16 +7,14 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Security By Design - Security Project</title>
-		<meta name="description" content="Security By Design - Security Project" />
-    <?= $this->Html->meta('favicon.png','/img/favicon.png',['type'=>'icon']) ?>
-		
+		<title>Orange Security Projects - Tour</title>
+		<meta name="description" content="Slider Revolution Example" />
 		<meta name="keywords" content="fullscreen image, grid layout, flexbox grid, transition" />
 		<meta name="author" content="ThemePunch" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- LOAD JQUERY LIBRARY -->
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
 
                 <!-- LOADING FONTS AND ICONS -->
         <link href="http://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet" property="stylesheet" type="text/css" media="all">
@@ -32,7 +30,7 @@
 
 
 </style>
-<style>.tp-caption.SleekLanding-Title,.SleekLanding-Title{color:rgba(255,255,255,1.00);font-size:35px;line-height:40px;font-weight:400;font-style:normal;font-family:Lato;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px;letter-spacing:5px}.tp-caption.SleekLanding-BottomText,.SleekLanding-BottomText{color:rgba(255,255,255,1.00);font-size:15px;line-height:24px;font-weight:400;font-style:normal;font-family:Lato;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px}</style>
+<style>.tp-caption.SleekLanding-Title,.SleekLanding-Title{color:rgba(255,255,255,1.00);font-size:35px;line-height:40px;font-weight:400;font-style:normal;font-family:Lato;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px;letter-spacing:5px}</style>
 <style type="text/css">	#rev_slider_4_1_wrapper .tp-loader.spinner2{ background-color: #555555 !important; } </style>
 <style type="text/css">.tp-fat{font-weight:900 !important}</style>
 				<style type="text/css">.hermes.tp-bullets{}.hermes .tp-bullet{overflow:hidden;  border-radius:50%;  width:16px;  height:16px;  background-color:rgba(0,0,0,0);  box-shadow:inset 0 0 0 2px rgb(255,255,255);  -webkit-transition:background 0.3s ease;  transition:background 0.3s ease;  position:absolute}.hermes .tp-bullet:hover{background-color:rgba(0,0,0,0.21)}.hermes .tp-bullet:after{content:' '; position:absolute; bottom:0; height:0; left:0; width:100%; background-color:rgb(255,255,255); box-shadow:0 0 1px rgb(255,255,255); -webkit-transition:height 0.3s ease; transition:height 0.3s ease}.hermes .tp-bullet.selected:after{height:100%}</style>
@@ -67,7 +65,7 @@
 		};</script>
 	</head>
 	
-	<body style="margin: 0; padding: 0; background: black !important;" >
+	<body style="margin: 0; padding: 0">
 			
 
 <div id="rev_slider_4_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="sleek-landing-page4" data-source="gallery" style="background:transparent;padding:0px;">
@@ -103,7 +101,7 @@
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 6; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.09); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;background-color:rgba(165,165,165,0);">BONJOUR </div>
+            style="z-index: 5; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.09); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;background-color:rgba(165,165,165,0);">BONJOUR </div>
 
 		<!-- LAYER NR. 2 -->
 		<div class="tp-caption   tp-resizeme" 
@@ -129,7 +127,7 @@
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 7; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.05); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">WELCOME </div>
+            style="z-index: 6; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.05); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">WELCOME </div>
 
 		<!-- LAYER NR. 3 -->
 		<div class="tp-caption   tp-resizeme" 
@@ -155,14 +153,14 @@
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 8; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.05); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">WILLKOMEN </div>
+            style="z-index: 7; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.05); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">WILLKOMEN </div>
 
 		<!-- LAYER NR. 4 -->
 		<div class="tp-caption SleekLanding-Title   tp-resizeme" 
 			 id="slide-10-layer-7" 
-			 data-x="['left','left','left','left']" data-hoffset="['205','187','304','186']" 
-			 data-y="['middle','middle','middle','middle']" data-voffset="['-191','-138','-153','-127']" 
-						data-fontsize="['40','35','35','25']"
+			 data-x="['left','left','left','left']" data-hoffset="['205','203','304','196']" 
+			 data-y="['middle','middle','middle','middle']" data-voffset="['-191','-135','-153','-138']" 
+						data-fontsize="['40','35','35','20']"
 			data-lineheight="['40','40','40','30']"
 			data-width="none"
 			data-height="none"
@@ -178,14 +176,14 @@
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 9; white-space: nowrap; font-size: 40px; font-weight: 700; letter-spacing: 0px;font-family:Arial, Helvetica, sans-serif;">Une innovation<br/>
-Gestion du suivi <br>des projets multiformes. </div>
+            style="z-index: 8; white-space: nowrap; font-size: 40px; font-weight: 700; letter-spacing: 0px;font-family:Arial, Helvetica, sans-serif;">Une innovation<br/>
+De la Sécurité Logique <br>Orange Côte d'Ivoire. </div>
 
 		<!-- LAYER NR. 5 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-10-layer-8" 
-			 data-x="['left','left','left','left']" data-hoffset="['226','236','305','188']" 
-			 data-y="['middle','middle','middle','middle']" data-voffset="['47','71','-35','-7']" 
+			 data-x="['left','left','left','left']" data-hoffset="['226','236','305','194']" 
+			 data-y="['middle','middle','middle','middle']" data-voffset="['47','71','-35','-12']" 
 						data-fontsize="['17','15','15','15']"
 			data-fontweight="['600','400','400','400']"
 			data-width="['320','320','320','200']"
@@ -202,7 +200,7 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 10; min-width: 320px; max-width: 320px; white-space: normal; font-size: 17px; line-height: 24px; font-weight: 600; color: rgba(255,255,255,1); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">Tout le processus de gestion des projets dans une plateforme unique permettant un meilleur suivi de l'ensemble des activités. </div>
+            style="z-index: 9; min-width: 320px; max-width: 320px; white-space: normal; font-size: 17px; line-height: 24px; font-weight: 600; color: rgba(255,255,255,1); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">Tout le processus de gestion des projets de sécurité logique dans une plateforme unique permettant un meilleur suivi de l'ensemble des activités. </div>
 
 		<!-- LAYER NR. 6 -->
 		<div class="tp-caption   tp-resizeme" 
@@ -223,7 +221,7 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 11;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['600px','600px','600px','300px']" data-hh="['140px','140px','140px','70px']" data-lazyload="/img/revslider/asset_tour_revslider/wood_pencil.png" data-no-retina> </div>
+            style="z-index: 10;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['600px','600px','600px','300px']" data-hh="['140px','140px','140px','70px']" data-lazyload="/img/revslider/asset_tour_revslider/wood_pencil.png" data-no-retina> </div>
 
 		<!-- LAYER NR. 7 -->
 		<div class="tp-caption   tp-resizeme" 
@@ -244,30 +242,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 12;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['340px','340px','340px','200px']" data-hh="['180px','180px','180px','106px']" data-lazyload="/img/revslider/asset_tour_revslider/eraser_pink.png" data-no-retina> </div>
+            style="z-index: 11;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['340px','340px','340px','200px']" data-hh="['180px','180px','180px','106px']" data-lazyload="/img/revslider/asset_tour_revslider/eraser_pink.png" data-no-retina> </div>
 
 		<!-- LAYER NR. 8 -->
-		<div class="tp-caption   tp-resizeme" 
-			 id="slide-10-layer-20" 
-			 data-x="['left','left','left','left']" data-hoffset="['47','47','51','30']" 
-			 data-y="['top','top','top','top']" data-voffset="['181','181','264','231']" 
-						data-width="none"
-			data-height="none"
-			data-whitespace="nowrap"
- 
-            data-type="image" 
-			data-responsive_offset="on" 
-
-            data-frames='[{"delay":10,"speed":1200,"frame":"0","from":"y:bottom;rZ:90deg;sX:2;sY:2;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-            data-textAlign="['inherit','inherit','inherit','inherit']"
-            data-paddingtop="[0,0,0,0]"
-            data-paddingright="[0,0,0,0]"
-            data-paddingbottom="[0,0,0,0]"
-            data-paddingleft="[0,0,0,0]"
-
-            style="z-index: 13;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['127px','127px','127px','127px']" data-hh="['130px','130px','130px','130px']" data-lazyload="/img/revslider/asset_tour_revslider/8899c-lp-lecloudpro-940x500-3-contact-ok_58f71376e9be2.png" data-no-retina> </div>
-
-		<!-- LAYER NR. 9 -->
 		<div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" 
 			 id="slide-10-layer-24" 
 			 data-x="['left','left','left','left']" data-hoffset="['685','685','685','685']" 
@@ -286,9 +263,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 14;background-color:rgba(0,0,0,0.5);"> </div>
+            style="z-index: 12;background-color:rgba(0,0,0,0.5);"> </div>
 
-		<!-- LAYER NR. 10 -->
+		<!-- LAYER NR. 9 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-10-layer-22" 
 			 data-x="['left','left','left','left']" data-hoffset="['686','686','686','686']" 
@@ -308,9 +285,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 15;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['486px','486px','486px','486px']" data-hh="['257px','257px','257px','257px']" data-lazyload="/img/revslider/asset_tour_revslider/87594-Qqqq.png" data-no-retina> </div>
+            style="z-index: 13;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['486px','486px','486px','486px']" data-hh="['257px','257px','257px','257px']" data-lazyload="/img/revslider/asset_tour_revslider/87594-Qqqq.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 11 -->
+		<!-- LAYER NR. 10 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-10-layer-28" 
 			 data-x="['left','left','left','left']" data-hoffset="['208','208','208','158']" 
@@ -330,9 +307,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 16;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['449px','400px','400px','400px']" data-hh="['449px','400px','400px','400px']" data-lazyload="/img/revslider/asset_tour_revslider/keyboard_apple.png" data-no-retina> </div>
+            style="z-index: 14;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['449px','400px','400px','400px']" data-hh="['449px','400px','400px','400px']" data-lazyload="/img/revslider/asset_tour_revslider/keyboard_apple.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 12 -->
+		<!-- LAYER NR. 11 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-10-layer-31" 
 			 data-x="['left','left','left','left']" data-hoffset="['-103','-59','-59','-32']" 
@@ -351,9 +328,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 17;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['400px','400px','400px','233px']" data-hh="['400px','400px','400px','233px']" data-lazyload="/img/revslider/asset_tour_revslider/object_chair_1.png" data-no-retina> </div>
+            style="z-index: 15;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['400px','400px','400px','233px']" data-hh="['400px','400px','400px','233px']" data-lazyload="/img/revslider/asset_tour_revslider/object_chair_1.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 13 -->
+		<!-- LAYER NR. 12 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-10-layer-39" 
 			 data-x="['left','left','left','left']" data-hoffset="['66','66','66','66']" 
@@ -372,9 +349,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 24;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['157px','157px','157px','157px']" data-hh="['157px','157px','157px','157px']" data-lazyload="/img/revslider/asset_tour_revslider/object_coffee_1.png" data-no-retina> </div>
+            style="z-index: 16;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['157px','157px','157px','157px']" data-hh="['157px','157px','157px','157px']" data-lazyload="/img/revslider/asset_tour_revslider/object_coffee_1.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 14 -->
+		<!-- LAYER NR. 13 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-10-layer-40" 
 			 data-x="['left','left','left','left']" data-hoffset="['182','182','182','182']" 
@@ -393,7 +370,28 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 25;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['212px','212px','212px','212px']" data-hh="['212px','212px','212px','212px']" data-lazyload="/img/revslider/asset_tour_revslider/object_dishrag_1.png" data-no-retina> </div>
+            style="z-index: 17;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['212px','212px','212px','212px']" data-hh="['212px','212px','212px','212px']" data-lazyload="/img/revslider/asset_tour_revslider/object_dishrag_1.png" data-no-retina> </div>
+
+		<!-- LAYER NR. 14 -->
+		<div class="tp-caption   tp-resizeme" 
+			 id="slide-10-layer-43" 
+			 data-x="['left','left','left','left']" data-hoffset="['27','27','27','31']" 
+			 data-y="['top','top','top','top']" data-voffset="['161','161','161','207']" 
+						data-width="none"
+			data-height="none"
+			data-whitespace="nowrap"
+ 
+            data-type="image" 
+			data-responsive_offset="on" 
+
+            data-frames='[{"delay":0,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"}]'
+            data-textAlign="['inherit','inherit','inherit','inherit']"
+            data-paddingtop="[0,0,0,0]"
+            data-paddingright="[0,0,0,0]"
+            data-paddingbottom="[0,0,0,0]"
+            data-paddingleft="[0,0,0,0]"
+
+            style="z-index: 18;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['149px','149px','149px','116px']" data-hh="['150px','150px','150px','117px']" data-lazyload="/img/revslider/asset_tour_revslider/96769-signature.png" data-no-retina> </div>
 	</li>
 	<!-- SLIDE  -->
     <li data-index="rs-13" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="1000"  data-thumb=""  data-rotate="0"  data-saveperformance="off"  data-title="Solution" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
@@ -404,7 +402,7 @@ Gestion du suivi <br>des projets multiformes. </div>
 		<!-- LAYER NR. 15 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-1" 
-			 data-x="['left','left','left','left']" data-hoffset="['47','47','45','20']" 
+			 data-x="['left','left','left','left']" data-hoffset="['48','48','45','20']" 
 			 data-y="['top','top','top','top']" data-voffset="['36','36','30','30']" 
 						data-fontsize="['150','150','100','70']"
 			data-lineheight="['150','150','100','70']"
@@ -425,7 +423,7 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 6; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.09); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;background-color:rgba(165,165,165,0);">BONJOUR </div>
+            style="z-index: 5; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.09); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;background-color:rgba(165,165,165,0);">BONJOUR </div>
 
 		<!-- LAYER NR. 16 -->
 		<div class="tp-caption   tp-resizeme" 
@@ -451,7 +449,7 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 7; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.05); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">WELCOME </div>
+            style="z-index: 6; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.05); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">WELCOME </div>
 
 		<!-- LAYER NR. 17 -->
 		<div class="tp-caption   tp-resizeme" 
@@ -477,14 +475,14 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 8; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.05); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">WILLKOMEN </div>
+            style="z-index: 7; white-space: nowrap; font-size: 150px; line-height: 150px; font-weight: 600; color: rgba(248,88,0,0.05); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">WILLKOMEN </div>
 
 		<!-- LAYER NR. 18 -->
 		<div class="tp-caption SleekLanding-Title   tp-resizeme" 
 			 id="slide-13-layer-7" 
-			 data-x="['left','left','left','left']" data-hoffset="['198','187','304','186']" 
-			 data-y="['middle','middle','middle','middle']" data-voffset="['-187','-138','-153','-127']" 
-						data-fontsize="['40','35','35','25']"
+			 data-x="['left','left','left','left']" data-hoffset="['197','187','299','181']" 
+			 data-y="['middle','middle','middle','middle']" data-voffset="['-187','-138','-154','-135']" 
+						data-fontsize="['40','35','35','20']"
 			data-lineheight="['40','40','40','30']"
 			data-width="none"
 			data-height="none"
@@ -500,8 +498,8 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 9; white-space: nowrap; font-size: 40px; font-weight: 700; letter-spacing: 0px;font-family:Arial, Helvetica, sans-serif;">Une innovation<br/>
-Gestion du suivi <br>des projets multiformes. </div>
+            style="z-index: 8; white-space: nowrap; font-size: 40px; font-weight: 700; letter-spacing: 0px;font-family:Arial, Helvetica, sans-serif;">Une innovation<br/>
+De la Sécurité Logique <br>Orange Côte d'Ivoire. </div>
 
 		<!-- LAYER NR. 19 -->
 		<div class="tp-caption   tp-resizeme" 
@@ -523,30 +521,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 10;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['547px','760px','760','380px']" data-hh="['720px','1000px','1000','500px']" data-lazyload="/img/revslider/asset_tour_revslider/coffee_cup.png" data-no-retina> </div>
+            style="z-index: 9;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['547px','760px','760','380px']" data-hh="['720px','1000px','1000','500px']" data-lazyload="/img/revslider/asset_tour_revslider/coffee_cup.png" data-no-retina> </div>
 
 		<!-- LAYER NR. 20 -->
-		<div class="tp-caption   tp-resizeme" 
-			 id="slide-13-layer-20" 
-			 data-x="['left','left','left','left']" data-hoffset="['47','47','51','30']" 
-			 data-y="['top','top','top','top']" data-voffset="['181','181','264','231']" 
-						data-width="none"
-			data-height="none"
-			data-whitespace="nowrap"
- 
-            data-type="image" 
-			data-responsive_offset="on" 
-
-            data-frames='[{"delay":10,"speed":1200,"frame":"0","from":"y:bottom;rZ:90deg;sX:2;sY:2;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-            data-textAlign="['inherit','inherit','inherit','inherit']"
-            data-paddingtop="[0,0,0,0]"
-            data-paddingright="[0,0,0,0]"
-            data-paddingbottom="[0,0,0,0]"
-            data-paddingleft="[0,0,0,0]"
-
-            style="z-index: 11;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['127px','127px','127px','127px']" data-hh="['130px','130px','130px','130px']" data-lazyload="/img/revslider/asset_tour_revslider/8899c-lp-lecloudpro-940x500-3-contact-ok_58f71376e9be2.png" data-no-retina> </div>
-
-		<!-- LAYER NR. 21 -->
 		<div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" 
 			 id="slide-13-layer-24" 
 			 data-x="['left','left','left','left']" data-hoffset="['683','683','683','683']" 
@@ -566,9 +543,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 12;background-color:rgba(0,0,0,0.5);"> </div>
+            style="z-index: 10;background-color:rgba(0,0,0,0.5);"> </div>
 
-		<!-- LAYER NR. 22 -->
+		<!-- LAYER NR. 21 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-27" 
 			 data-x="['left','left','left','left']" data-hoffset="['85','85','85','85']" 
@@ -588,9 +565,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 13;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['417px','417px','417px','417px']" data-hh="['417px','417px','417px','417px']" data-lazyload="/img/revslider/asset_tour_revslider/object_folder_1.png" data-no-retina> </div>
+            style="z-index: 11;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['417px','417px','417px','417px']" data-hh="['417px','417px','417px','417px']" data-lazyload="/img/revslider/asset_tour_revslider/object_folder_1.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 23 -->
+		<!-- LAYER NR. 22 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-28" 
 			 data-x="['left','left','left','left']" data-hoffset="['321','321','321','321']" 
@@ -609,13 +586,13 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 14;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['250px','250px','250px','250px']" data-hh="['250px','250px','250px','250px']" data-lazyload="/img/revslider/asset_tour_revslider/object_mechpencil_1.png" data-no-retina> </div>
+            style="z-index: 12;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['250px','250px','250px','250px']" data-hh="['250px','250px','250px','250px']" data-lazyload="/img/revslider/asset_tour_revslider/object_mechpencil_1.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 24 -->
+		<!-- LAYER NR. 23 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-8" 
-			 data-x="['left','left','left','left']" data-hoffset="['204','185','305','188']" 
-			 data-y="['middle','middle','middle','middle']" data-voffset="['-66','-15','-35','-7']" 
+			 data-x="['left','left','left','left']" data-hoffset="['204','185','305','183']" 
+			 data-y="['middle','middle','middle','middle']" data-voffset="['-66','-15','-35','-11']" 
 						data-fontsize="['17','15','15','15']"
 			data-fontweight="['600','600','400','400']"
 			data-color="['rgb(255,255,255)','rgba(255,255,255,1)','rgba(255,255,255,1)','rgba(255,255,255,1)']"
@@ -633,9 +610,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 15; min-width: 374px; max-width: 374px; white-space: normal; font-size: 17px; line-height: 24px; font-weight: 600; color: #ffffff; letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">Créez, accédez et suivez tous les aspects de vos projets en temps réel, en collaborant de façon plus efficace avec le pôle de sécurité. </div>
+            style="z-index: 13; min-width: 374px; max-width: 374px; white-space: normal; font-size: 17px; line-height: 24px; font-weight: 600; color: #ffffff; letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">Créez, accédez et suivez tous les aspects de vos projets en temps réel, en collaborant de façon plus efficace avec le pôle de sécurité. </div>
 
-		<!-- LAYER NR. 25 -->
+		<!-- LAYER NR. 24 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-26" 
 			 data-x="['left','left','left','left']" data-hoffset="['-478','-478','-414','-324']" 
@@ -654,9 +631,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 16;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['800px','800px','661px','507px']" data-hh="['800px','800px','661px','507px']" data-lazyload="/img/revslider/asset_tour_revslider/object_lamp_1.png" data-no-retina> </div>
+            style="z-index: 14;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['800px','800px','661px','507px']" data-hh="['800px','800px','661px','507px']" data-lazyload="/img/revslider/asset_tour_revslider/object_lamp_1.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 26 -->
+		<!-- LAYER NR. 25 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-29" 
 			 data-x="['left','left','left','left']" data-hoffset="['126','125','125','125']" 
@@ -676,9 +653,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 17;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['400px','400px','400px','400px']" data-hh="['400px','400px','400px','400px']" data-lazyload="/img/revslider/asset_tour_revslider/object_book_5.png" data-no-retina> </div>
+            style="z-index: 15;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['400px','400px','400px','400px']" data-hh="['400px','400px','400px','400px']" data-lazyload="/img/revslider/asset_tour_revslider/object_book_5.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 27 -->
+		<!-- LAYER NR. 26 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-31" 
 			 data-x="['left','left','left','left']" data-hoffset="['450','450','450','450']" 
@@ -698,9 +675,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 18;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['250px','250px','250px','250px']" data-hh="['250px','250px','250px','250px']" data-lazyload="/img/revslider/asset_tour_revslider/object_pcmouse_1.png" data-no-retina> </div>
+            style="z-index: 16;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['250px','250px','250px','250px']" data-hh="['250px','250px','250px','250px']" data-lazyload="/img/revslider/asset_tour_revslider/object_pcmouse_1.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 28 -->
+		<!-- LAYER NR. 27 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-32" 
 			 data-x="['left','left','left','left']" data-hoffset="['-6','-6','-6','-6']" 
@@ -719,9 +696,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 19;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['250px','250px','250px','250px']" data-hh="['250px','250px','250px','250px']" data-lazyload="/img/revslider/asset_tour_revslider/object_glasses_2.png" data-no-retina> </div>
+            style="z-index: 17;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['250px','250px','250px','250px']" data-hh="['250px','250px','250px','250px']" data-lazyload="/img/revslider/asset_tour_revslider/object_glasses_2.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 29 -->
+		<!-- LAYER NR. 28 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-13-layer-34" 
 			 data-x="['left','left','left','left']" data-hoffset="['678','678','678','678']" 
@@ -741,9 +718,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 20;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['508px','508px','508px','508px']" data-hh="['268px','268px','268px','268px']" data-lazyload="/img/revslider/asset_tour_revslider/766f3-securit--_projet2.png" data-no-retina> </div>
+            style="z-index: 18;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['508px','508px','508px','508px']" data-hh="['268px','268px','268px','268px']" data-lazyload="/img/revslider/asset_tour_revslider/766f3-securit--_projet2.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 30 -->
+		<!-- LAYER NR. 29 -->
 		<div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" 
 			 id="slide-13-layer-36" 
 			 data-x="['left','left','left','left']" data-hoffset="['678','678','678','678']" 
@@ -762,7 +739,28 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 21;background-color:rgb(0,0,0);"> </div>
+            style="z-index: 19;background-color:rgb(0,0,0);"> </div>
+
+		<!-- LAYER NR. 30 -->
+		<div class="tp-caption   tp-resizeme" 
+			 id="slide-13-layer-38" 
+			 data-x="['left','left','left','left']" data-hoffset="['33','25','25','24']" 
+			 data-y="['top','top','top','top']" data-voffset="['172','170','170','243']" 
+						data-width="none"
+			data-height="none"
+			data-whitespace="nowrap"
+ 
+            data-type="image" 
+			data-responsive_offset="on" 
+
+            data-frames='[{"delay":0,"speed":1000,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":1000,"frame":"999","to":"x:{-250,250};y:{-150,150};rX:{-90,90};rY:{-90,90};rZ:{-360,360};sX:0;sY:0;opacity:0;","ease":"Power2.easeInOut"}]'
+            data-textAlign="['inherit','inherit','inherit','inherit']"
+            data-paddingtop="[0,0,0,0]"
+            data-paddingright="[0,0,0,0]"
+            data-paddingbottom="[0,0,0,0]"
+            data-paddingleft="[0,0,0,0]"
+
+            style="z-index: 20;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['145px','145px','145px','121px']" data-hh="['146px','146px','146px','122px']" data-lazyload="/img/revslider/asset_tour_revslider/96769-signature.png" data-no-retina> </div>
 	</li>
 	<!-- SLIDE  -->
     <li data-index="rs-14" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="1000"  data-thumb=""  data-rotate="0"  data-saveperformance="off"  data-title="Solution" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
@@ -773,8 +771,8 @@ Gestion du suivi <br>des projets multiformes. </div>
 		<!-- LAYER NR. 31 -->
 		<div class="tp-caption rev-btn " 
 			 id="getin" 
-			 data-x="['left','left','left','left']" data-hoffset="['218','231','306','190']" 
-			 data-y="['top','top','top','top']" data-voffset="['471','528','525','436']" 
+			 data-x="['left','left','left','left']" data-hoffset="['202','231','295','189']" 
+			 data-y="['top','top','top','top']" data-voffset="['469','528','521','437']" 
 						data-fontsize="['17','17','17','15']"
 			data-width="['261','261','261','238']"
 			data-height="47"
@@ -917,9 +915,9 @@ Gestion du suivi <br>des projets multiformes. </div>
 		<!-- LAYER NR. 37 -->
 		<div class="tp-caption SleekLanding-Title   tp-resizeme" 
 			 id="slide-14-layer-7" 
-			 data-x="['left','left','left','left']" data-hoffset="['221','187','304','186']" 
-			 data-y="['middle','middle','middle','middle']" data-voffset="['-192','-138','-153','-127']" 
-						data-fontsize="['40','35','35','25']"
+			 data-x="['left','left','left','left']" data-hoffset="['205','187','297','197']" 
+			 data-y="['middle','middle','middle','middle']" data-voffset="['-195','-138','-154','-132']" 
+						data-fontsize="['40','35','35','20']"
 			data-lineheight="['40','40','40','30']"
 			data-width="none"
 			data-height="none"
@@ -936,13 +934,13 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingleft="[0,0,0,0]"
 
             style="z-index: 11; white-space: nowrap; font-size: 40px; font-weight: 700; letter-spacing: 0px;font-family:Arial, Helvetica, sans-serif;">Une innovation<br/>
-Gestion du suivi <br>des projets multiformes. </div>
+De la Sécurité Logique <br>Orange Côte d'Ivoire. </div>
 
 		<!-- LAYER NR. 38 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-14-layer-8" 
-			 data-x="['left','left','left','left']" data-hoffset="['221','231','305','188']" 
-			 data-y="['middle','middle','middle','middle']" data-voffset="['-54','70','-35','-7']" 
+			 data-x="['left','left','left','left']" data-hoffset="['205','231','298','194']" 
+			 data-y="['middle','middle','middle','middle']" data-voffset="['-56','70','-32','-10']" 
 						data-fontsize="['17','15','15','15']"
 			data-fontweight="['600','400','400','400']"
 			data-width="['403','320','320','200']"
@@ -962,27 +960,6 @@ Gestion du suivi <br>des projets multiformes. </div>
             style="z-index: 12; min-width: 403px; max-width: 403px; max-width: 97px; max-width: 97px; white-space: normal; font-size: 17px; line-height: 24px; font-weight: 600; color: rgba(255,255,255,1); letter-spacing: px;font-family:Arial, Helvetica, sans-serif;">Vous êtes déjà inscrit! Connectez-vous dès à présent avec vos identifiants AD et accédez à un univers de possibilités. La vie change avec ORANGE </div>
 
 		<!-- LAYER NR. 39 -->
-		<div class="tp-caption   tp-resizeme" 
-			 id="slide-14-layer-20" 
-			 data-x="['left','left','left','left']" data-hoffset="['47','47','51','30']" 
-			 data-y="['top','top','top','top']" data-voffset="['181','181','264','231']" 
-						data-width="none"
-			data-height="none"
-			data-whitespace="nowrap"
- 
-            data-type="image" 
-			data-responsive_offset="on" 
-
-            data-frames='[{"delay":10,"speed":1200,"frame":"0","from":"y:bottom;rZ:90deg;sX:2;sY:2;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-            data-textAlign="['inherit','inherit','inherit','inherit']"
-            data-paddingtop="[0,0,0,0]"
-            data-paddingright="[0,0,0,0]"
-            data-paddingbottom="[0,0,0,0]"
-            data-paddingleft="[0,0,0,0]"
-
-            style="z-index: 13;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['127px','127px','127px','127px']" data-hh="['130px','130px','130px','130px']" data-lazyload="/img/revslider/asset_tour_revslider/8899c-lp-lecloudpro-940x500-3-contact-ok_58f71376e9be2.png" data-no-retina> </div>
-
-		<!-- LAYER NR. 40 -->
 		<div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" 
 			 id="slide-14-layer-24" 
 			 data-x="['left','left','left','left']" data-hoffset="['679','679','679','679']" 
@@ -1002,9 +979,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 14;background-color:rgba(0,0,0,0.5);"> </div>
+            style="z-index: 13;background-color:rgba(0,0,0,0.5);"> </div>
 
-		<!-- LAYER NR. 41 -->
+		<!-- LAYER NR. 40 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-14-layer-27" 
 			 data-x="['left','left','left','left']" data-hoffset="['681','681','681','681']" 
@@ -1024,13 +1001,13 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 15;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['515px','515px','515px','515px']" data-hh="['272px','272px','272px','272px']" data-lazyload="/img/revslider/asset_tour_revslider/29968-Qqqq.png" data-no-retina> </div>
+            style="z-index: 14;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['515px','515px','515px','515px']" data-hh="['272px','272px','272px','272px']" data-lazyload="/img/revslider/asset_tour_revslider/29968-Qqqq.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 42 -->
+		<!-- LAYER NR. 41 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-14-layer-29" 
-			 data-x="['left','left','left','left']" data-hoffset="['1','1','1','-3']" 
-			 data-y="['top','top','top','top']" data-voffset="['279','279','279','310']" 
+			 data-x="['left','left','left','left']" data-hoffset="['1','1','1','-31']" 
+			 data-y="['top','top','top','top']" data-voffset="['279','279','279','322']" 
 						data-width="none"
 			data-height="none"
 			data-whitespace="nowrap"
@@ -1045,9 +1022,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 16;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['250px','250px','250px','250px']" data-hh="['250px','250px','250px','250px']" data-lazyload="/img/revslider/asset_tour_revslider/object_pencup_1.png" data-no-retina> </div>
+            style="z-index: 15;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['250px','250px','250px','250px']" data-hh="['250px','250px','250px','250px']" data-lazyload="/img/revslider/asset_tour_revslider/object_pencup_1.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 43 -->
+		<!-- LAYER NR. 42 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-14-layer-30" 
 			 data-x="['left','left','left','left']" data-hoffset="['-70','-70','-70','-70']" 
@@ -1066,9 +1043,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 17;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['375px','375px','375px','375px']" data-hh="['375px','375px','375px','375px']" data-lazyload="/img/revslider/asset_tour_revslider/object_chair_2.png" data-no-retina> </div>
+            style="z-index: 16;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['375px','375px','375px','375px']" data-hh="['375px','375px','375px','375px']" data-lazyload="/img/revslider/asset_tour_revslider/object_chair_2.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 44 -->
+		<!-- LAYER NR. 43 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-14-layer-33" 
 			 data-x="['left','left','left','left']" data-hoffset="['1027','1027','1027','1027']" 
@@ -1087,9 +1064,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 18;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['225px','225px','225px','225px']" data-hh="['225px','225px','225px','225px']" data-lazyload="/img/revslider/asset_tour_revslider/object_postit_4.png" data-no-retina> </div>
+            style="z-index: 17;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['225px','225px','225px','225px']" data-hh="['225px','225px','225px','225px']" data-lazyload="/img/revslider/asset_tour_revslider/object_postit_4.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 45 -->
+		<!-- LAYER NR. 44 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-14-layer-38" 
 			 data-x="['left','left','left','left']" data-hoffset="['173','173','173','173']" 
@@ -1109,9 +1086,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 19;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['349px','349px','349px','349px']" data-hh="['349px','349px','349px','349px']" data-lazyload="/img/revslider/asset_tour_revslider/object_purse_2.png" data-no-retina> </div>
+            style="z-index: 18;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['349px','349px','349px','349px']" data-hh="['349px','349px','349px','349px']" data-lazyload="/img/revslider/asset_tour_revslider/object_purse_2.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 46 -->
+		<!-- LAYER NR. 45 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-14-layer-44" 
 			 data-x="['left','left','left','left']" data-hoffset="['383','383','383','383']" 
@@ -1130,9 +1107,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 20;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['290px','290px','290px','290px']" data-hh="['290px','290px','290px','290px']" data-lazyload="/img/revslider/asset_tour_revslider/object_leatherdocument_1.png" data-no-retina> </div>
+            style="z-index: 19;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['290px','290px','290px','290px']" data-hh="['290px','290px','290px','290px']" data-lazyload="/img/revslider/asset_tour_revslider/object_leatherdocument_1.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 47 -->
+		<!-- LAYER NR. 46 -->
 		<div class="tp-caption   tp-resizeme" 
 			 id="slide-14-layer-47" 
 			 data-x="['left','left','left','left']" data-hoffset="['377','377','377','314']" 
@@ -1151,36 +1128,33 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 21;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['200px','200px','200px','200px']" data-hh="['200px','200px','200px','200px']" data-lazyload="/img/revslider/asset_tour_revslider/object_applewatch_2.png" data-no-retina> </div>
-	</li>
-</ul>
-<div style="" class="tp-static-layers">
+            style="z-index: 20;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['200px','200px','200px','200px']" data-hh="['200px','200px','200px','200px']" data-lazyload="/img/revslider/asset_tour_revslider/object_applewatch_2.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 48 -->
-		<div class="tp-caption SleekLanding-BottomText   tp-resizeme tp-static-layer" 
-			 id="slider-4-layer-2" 
-			 data-x="['left','left','center','center']" data-hoffset="['20','20','0','74']" 
-			 data-y="['bottom','bottom','bottom','bottom']" data-voffset="['30','30','170','164']" 
+		<!-- LAYER NR. 47 -->
+		<div class="tp-caption   tp-resizeme" 
+			 id="slide-14-layer-50" 
+			 data-x="['left','left','left','left']" data-hoffset="['43','35','35','28']" 
+			 data-y="['top','top','top','top']" data-voffset="['163','174','174','238']" 
 						data-width="none"
 			data-height="none"
 			data-whitespace="nowrap"
-			data-visibility="['on','on','on','off']"
  
-            data-type="text" 
+            data-type="image" 
 			data-responsive_offset="on" 
 
-			data-startslide="0" 
-			data-endslide="2" 
-            data-frames='[{"delay":500,"speed":500,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"nothing"}]'
-            data-textAlign="['left','left','left','left']"
+            data-frames='[{"delay":0,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"}]'
+            data-textAlign="['inherit','inherit','inherit','inherit']"
             data-paddingtop="[0,0,0,0]"
             data-paddingright="[0,0,0,0]"
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 52; white-space: nowrap; letter-spacing: px;">Une innovation Security ByDesign </div>
+            style="z-index: 21;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['144px','131px','131px','123px']" data-hh="['145px','132px','132px','124px']" data-lazyload="/img/revslider/asset_tour_revslider/96769-signature.png" data-no-retina> </div>
+	</li>
+</ul>
+<div style="" class="tp-static-layers">
 
-		<!-- LAYER NR. 49 -->
+		<!-- LAYER NR. 48 -->
 		<div class="tp-caption   tp-resizeme tp-static-layer" 
 			 id="slider-4-layer-3" 
 			 data-x="['right','right','center','center']" data-hoffset="['150','150','0','85']" 
@@ -1201,9 +1175,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 53; white-space: nowrap; font-size: 15px; line-height: 24px; font-weight: 400; color: rgba(255,255,255,1); letter-spacing: px;font-family:Lato;">Copyright 2018 - Tous droits réservés </div>
+            style="z-index: 52; white-space: nowrap; font-size: 15px; line-height: 24px; font-weight: 400; color: rgba(255,255,255,1); letter-spacing: px;font-family:Lato;">Copyright 2018 - Tous droits réservés </div>
 
-		<!-- LAYER NR. 50 -->
+		<!-- LAYER NR. 49 -->
 		<div class="tp-caption   tp-resizeme tp-static-layer" 
 			 id="slider-4-layer-7" 
 			 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
@@ -1225,10 +1199,10 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 54; white-space: nowrap; font-size: 30px; line-height: 30px; font-weight: 400; color: rgba(255,255,255,1); letter-spacing: ;cursor:pointer;">
+            style="z-index: 53; white-space: nowrap; font-size: 30px; line-height: 30px; font-weight: 400; color: rgba(255,255,255,1); letter-spacing: ;cursor:pointer;">
 <div class="rs-looped rs-slideloop"  data-easing="Power2.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="-5" data-ye="5"><i class="fa-icon-chevron-down"></i> </div></div>
 
-		<!-- LAYER NR. 51 -->
+		<!-- LAYER NR. 50 -->
 		<div class="tp-caption   tp-resizeme tp-static-layer" 
 			 id="slider-4-layer-8" 
 			 data-x="['center','center','center','center']" data-hoffset="['297','-151','-288','-227']" 
@@ -1250,13 +1224,13 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 55;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['350px','350px','350px','350px']" data-hh="['650px','650px','650px','650px']" data-lazyload="/img/revslider/asset_tour_revslider/iphone_cutout.png" data-no-retina> </div>
+            style="z-index: 54;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['350px','350px','350px','350px']" data-hh="['650px','650px','650px','650px']" data-lazyload="/img/revslider/asset_tour_revslider/iphone_cutout.png" data-no-retina> </div>
 
-		<!-- LAYER NR. 52 -->
+		<!-- LAYER NR. 51 -->
 		<div class="tp-caption   tp-resizeme tp-static-layer" 
 			 id="slider-4-layer-22" 
-			 data-x="['left','left','left','left']" data-hoffset="['51','51','51','22']" 
-			 data-y="['top','top','top','top']" data-voffset="['35','35','35','29']" 
+			 data-x="['left','left','left','left']" data-hoffset="['36','36','36','22']" 
+			 data-y="['top','top','top','top']" data-voffset="['33','33','33','29']" 
 						data-width="none"
 			data-height="none"
 			data-whitespace="nowrap"
@@ -1273,9 +1247,9 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 56;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['93px','93px','93px','93px']" data-hh="['93px','93px','93px','93px']" data-lazyload="/img/revslider/asset_tour_revslider/0f81d-Logo-Orange_1234_mediatheque-lightbox.jpg" data-no-retina> </div>
+            style="z-index: 55;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['93px','93px','93px','93px']" data-hh="['93px','93px','93px','93px']" data-lazyload="/img/revslider/asset_tour_revslider/0f81d-Logo-Orange_1234_mediatheque-lightbox.jpg" data-no-retina> </div>
 
-		<!-- LAYER NR. 53 -->
+		<!-- LAYER NR. 52 -->
 		<div class="tp-caption   tp-resizeme tp-static-layer" 
 			 id="slider-4-layer-23" 
 			 data-x="['left','left','left','left']" data-hoffset="['659','659','659','659']" 
@@ -1297,7 +1271,7 @@ Gestion du suivi <br>des projets multiformes. </div>
             data-paddingbottom="[0,0,0,0]"
             data-paddingleft="[0,0,0,0]"
 
-            style="z-index: 57;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['538px','538px','538px','538px']" data-hh="['437px','437px','437px','437px']" data-lazyload="/img/revslider/asset_tour_revslider/94ef0-apple-inc-clipart-mac-display-6.png" data-no-retina> </div>
+            style="z-index: 56;"><img src="/img/revslider/asset_tour_revslider/dummy.png" alt="" data-ww="['538px','538px','538px','538px']" data-hh="['437px','437px','437px','437px']" data-lazyload="/img/revslider/asset_tour_revslider/94ef0-apple-inc-clipart-mac-display-6.png" data-no-retina> </div>
 </div>
 <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>	</div>
 </div><!-- END REVOLUTION SLIDER -->
@@ -1386,14 +1360,7 @@ jsFileLocation:"//revslider.local:8888/revslider/public//img/revslider/asset_tou
      }; /* END OF ON LOAD FUNCTION */
 }()); /* END OF WRAPPING FUNCTION */
 		</script>
-		<?= $this->Html->script('../node_modules/howler/dist/howler.min') ?>
-		<script>
-			var sound = new Howl({
-			  src: '/webroot/music/tour.mp3',
-			  autoplay: true,
-			  loop: true,
-			  volume: 1,
-			});
-		</script>
+		
+
 	    </body>
 </html>

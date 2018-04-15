@@ -126,6 +126,11 @@ Router::scope('/projects', function (RouteBuilder $routes) {
     $routes->connect('/add-actor-report-contributors', ['controller' => 'Projects', 'action' => 'addActorReportContributors']);
 });
 
+
+Router::scope('/project-assets', function (RouteBuilder $routes) {
+    $routes->connect('/upload', ['controller' => 'ProjectAssets', 'action' => 'upload']);
+});
+
 Router::scope('/project-types', function (RouteBuilder $routes) {
     $routes->connect('/all', ['controller' => 'ProjectTypes', 'action' => 'all']);
 });
@@ -142,12 +147,9 @@ Router::scope('/profiles', function (RouteBuilder $routes) {
     $routes->connect('/all', ['controller' => 'Profiles', 'action' => 'all']);
 });
 
-
 Router::scope('/zine', function (RouteBuilder $routes) {
     $routes->connect('/read/:url', ['controller' => 'Zine', 'action' => 'read']);
 });
-
-
 
 Router::scope('/project-sheets', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'ProjectSheets', 'action' => 'index']);

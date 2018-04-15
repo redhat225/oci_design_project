@@ -38,6 +38,7 @@ class ProjectContributor extends Entity
         'project_id' => true,
         'project_contributor_role_id' => true,
         'created' => true,
+        'creator' => true,
         'modified' => true,
         'deleted' => true,
         'created_by' => true,

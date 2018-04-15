@@ -40,6 +40,7 @@ class Project extends Entity
      */
     protected $_accessible = [
         'project_fullname' => true,
+        'project_duration_type' => true,
         'project_priority' => true,
         'project_type_id' => true,
         'created' => true,
@@ -52,9 +53,11 @@ class Project extends Entity
         'user_account' => true,
         'project_contributors' => true,
         'project_security_audit_reports' => true,
+        'project_assets'=> true,
         'project_security_audit_requirements' => true,
         'project_security_requirements' => true,
         'project_security_sheets' => true,
-        'project_tickets' => true
+        'project_tickets' => true,
+        'creator' => true
     ];
 }

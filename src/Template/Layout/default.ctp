@@ -55,6 +55,8 @@ $pageDescription = 'Orange Security Projects';
     <?= $this->Html->script('../node_modules/chart.js/dist/Chart.min') ?>
     <?= $this->Html->script('../node_modules/angular-chart.js/dist/angular-chart.min') ?>
     <?= $this->Html->script('../node_modules/angular-loading-bar/src/loading-bar') ?>
+    <?= $this->Html->script('../node_modules/angular-file-saver/dist/angular-file-saver.bundle') ?>
+    
     
     <?= $this->Html->script('../node_modules/angular-fullcalendar/dist/angular-fullcalendar') ?>
 

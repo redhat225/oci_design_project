@@ -202,6 +202,38 @@ class ProjectSecurityAuditRequirementsTable extends Table
             }
     }
 
+
+    public function afterSave($event, $entity, $options){
+            $trail_table = TableRegistry::get('Trails');
+            $trail_action_table = TableRegistry::get('TrailActions');
+            $trail_target_table = TableRegistry::get('TrailTargets');
+            // get action
+            if($entity->is_new)
+                $search_action = "Création Fiche Prérequis Audit";
+            else
+                $search_action = "Modification Fiche Prérequis Audit";
+
+            $action = $trail_action_table->find()->select(['id'])
+                                          ->where(['action_denomination'=>$search_action])
+                                          ->first();
+            // get target
+            $target = $trail_target_table->find()->select(['id'])
+                                          ->where(['target_denomination'=>'Fiche Prérequis Audit'])
+                                          ->first();                
+
+            $trail = $trail_table->newEntity();
+            $trail->user_account_id = $entity->creator;
+            $trail->trail_action_id = $action->id;
+            $trail->trail_target_id = $target->id;
+            $trail->trail_parent_target = $entity->project_id;
+
+            if(!($trail->errors())){
+               if(!($trail_table->save($trail)))
+                throw new Exception\BadRequestException(__('error bad request save trail'));
+            }else
+              throw new Exception\BadRequestException(__('error bad request save trail'));
+    }
+
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.

@@ -24,8 +24,9 @@ $pageDescription = 'Orange Security Projects';
         <?= $pageDescription ?>:
     </title>
     <?= $this->Html->meta('favicon.png','/img/favicon.png',['type'=>'icon']) ?>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <?= $this->fetch('meta') ?>
+    <?= $this->Html->script('font_awesome') ?>
     <?= $this->Html->css('../node_modules/bulma/custom_bulma') ?>
     <?= $this->Html->css('main') ?>
     <?= $this->Html->css('../node_modules/toastr/build/toastr.min') ?>
@@ -41,10 +42,8 @@ $pageDescription = 'Orange Security Projects';
     <!-- Load angular app here -->
 
 
-<script
-  src="https://code.jquery.com/jquery-1.11.2.min.js"
-  integrity="sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA="
-  crossorigin="anonymous"></script>
+    <?= $this->Html->script('jquery.min') ?>
+    
     <?= $this->Html->script('../node_modules/angular/angular.min') ?>
     <?= $this->Html->script('../node_modules/toastr/build/toastr.min') ?>
 

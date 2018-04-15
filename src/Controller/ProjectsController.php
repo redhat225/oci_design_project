@@ -29,6 +29,7 @@ use Cake\Auth\DefaultPasswordHasher;
 use Cake\Utility\Text;
 use Cake\View\View;
 
+
 /**
  * Static content controller
  *
@@ -57,38 +58,11 @@ class ProjectsController extends AppController
                 $data['action'] = 'create';
                 $data['created_by_contributor'] = $this->request->session()->read('Auth.User.id');
                 $project = $this->Projects->newEntity($data,['associated'=>['ProjectContributors','ProjectTickets']]);
+                $project->creator = $data['created_by_contributor'];
 
                 if($this->Projects->save($project)){
-                // Generate project ticket_path
-                    try{    
-                        $date = new \DateTime('NOW');
-                        $formatted_date = $date->format('d-m-Y à H:i:s');
-                        $this->auto_render = false;
-                        $view =new View($this->request,$this->response,null);
-                        $view->viewPath='Projects';
-                        $view->layout = false;
-                        // Get Creator Project
-                        $this->loadModel('UserAccounts');
-                        $user_account =  $this->UserAccounts->find()->where(['UserAccounts.id'=>$data['created_by_contributor']])
-                                         ->contain(['Users'])
-                                         ->first();
-
-                        $view->set(compact('project','data','formatted_date','user_account'));
-                        $view_output_ticket_project = $view->render('ticket_project'); 
-                        $ticket_path = $project->project_tickets[0]->project_ticket_path;
-
-                        $path = WWW_ROOT.'sheets/ticket_project/'.$ticket_path.'.html';
-                        file_put_contents($path, $view_output_ticket_project);
-
-                        shell_exec('wkhtmltopdf '.WWW_ROOT.'sheets/ticket_project/'.$ticket_path.'.html '.WWW_ROOT.'sheets/ticket_project/'.$ticket_path.'.pdf');
-
-                        $is_generate_project_ticket = true;
-                    }catch(\MainException $e){
-                        $is_generate_project_ticket = false;
-                    }       
-
                     $this->RequestHandler->renderAs($this, 'json');
-                    $response = ['id'=>$project->id,'criticity'=>$project->project_criticity,'ticket_path'=>$ticket_path] ; 
+                    $response = ['id'=>$project->id,'criticity'=>$project->project_criticity]; 
                     $this->set(compact('response'));
                     $this->set('_serialize',['response']);
                 }else
@@ -102,7 +76,6 @@ class ProjectsController extends AppController
     public function test($instance_id = null){
 
     }
-
 
     public function addActorReport(){
         if(!Cache::read('token','token_add_actor'))
@@ -187,7 +160,9 @@ class ProjectsController extends AppController
                      return $query->order(['ProjectSecurityRequirements.created'=>'desc']);
                 }, 'ProjectSecurityAuditRequirements' => function($query){
                      return $query->order(['ProjectSecurityAuditRequirements.created'=>'desc']);
-                }])->order(['Projects.created'=>'desc']);
+                }, 'ProjectAssets' => function($query){
+                    return $query->order(['ProjectAssets.created' => 'desc']);
+                }, 'ProjectAssets.UserAccounts.Users'])->order(['Projects.created'=>'desc']);
 
                 foreach ($projects as $key => $value) {
                     $value->project_indices = json_decode($value->project_indices);

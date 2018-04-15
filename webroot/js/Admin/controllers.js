@@ -117,7 +117,7 @@ angular.module('oci_controllers',[])
 				projects.create(project).then(function(resp){			
 					if(resp.data.response.criticity == 'noncritical')
 					{
-					    $scope.ticket_path = resp.data.response.ticket_path;
+					    $scope.ticket_path = resp.data.response.id;
 						$scope.active_failure_project_modal = 'is-active';
 					}
 					else
@@ -153,10 +153,17 @@ angular.module('oci_controllers',[])
 
 
 
-		}]).controller('ProjectsViewController',['$scope','projects', function($scope,projects){
-			projects.all().then(function(resp){
-				$scope.projects = resp.data.projects;
-			});
+		}]).controller('ProjectsViewController',['$scope','projectAssetServices','projects','Upload','FileSaver', function($scope,projectAssetServices,projects,Upload,FileSaver){
+				
+				$scope.load_project = function(){
+					 $scope.is_loading_projects = true;
+					projects.all().then(function(resp){
+						$scope.projects = resp.data.projects;
+					}).finally(function(){
+					   $scope.is_loading_projects = false;
+					});
+				};
+				$scope.load_project();
 
 				$scope.openViewModal = function(project){
 					$scope.openViewModalTrigger = 'is-active';
@@ -169,8 +176,9 @@ angular.module('oci_controllers',[])
 
 		    // Manage workflow
 		    $scope.showWorkflowModalTrigger = '';
-		    $scope.showWorkflowModal = function(){
+		    $scope.showWorkflowModal = function(project){
 		    	$scope.showWorkflowModalTrigger = 'is-active';
+		    	$scope.current_modal_project = project;
 		    };
 		    $scope.closeWorkflowModal = function(){
 		    	$scope.showWorkflowModalTrigger = '';
@@ -178,6 +186,55 @@ angular.module('oci_controllers',[])
 
 		    $scope.workflow_tab = 'history';
 
+		    // manage file upload
+		    $scope.addAssetModalTrigger = '';
+		    $scope.is_upload_asset = false;
+		    $scope.upload_asset_project = {};
+		    $scope.closeAssetModal = function(){
+		    	$scope.addAssetModalTrigger = '';
+			    $scope.upload_asset_project = {};
+		    };
+
+		    $scope.openAssetModal = function(project){
+		    	$scope.addAssetModalTrigger = 'is-active';
+		    	$scope.upload_asset_project.project_id = project.id;
+		    };
+		    $scope.upload_asset = function(project_asset){
+							$scope.is_upload_asset = true;
+							Upload.upload({
+								url:'/project-assets/upload',
+								data: {'project_asset': project_asset}
+							}).then(function(resp){
+								 toastr.success("Upload réussi");
+								 $scope.closeAssetModal();
+								 $scope.load_project();
+							}, function(err){
+								toastr.error("Une erreur est survenue lors de l'envoi");
+							}).finally(function(){
+							    $scope.is_upload_asset = false;
+							});
+			};
+		    $scope.inspect_asset = function(asset){
+		    	let inspect = asset.type;
+		    	let regExp = new RegExp(/image/, 'i');
+
+		    	if(regExp.test(inspect))
+		    	   $scope.upload_asset_project.type_asset ="image";
+		    	else
+		    	   $scope.upload_asset_project.type_asset ="file";
+			};
+
+			$scope.download_asset = function(asset){
+					var byteString = atob(asset.asset_base64);
+					// Convert that text into a byte array.
+					var ab = new ArrayBuffer(byteString.length);
+					var ia = new Uint8Array(ab);
+					for (var i = 0; i < byteString.length; i++){
+					    ia[i] = byteString.charCodeAt(i);
+					}
+                    var data = new Blob([ia], {type: asset.asset_type});
+                    FileSaver.saveAs(data, asset.asset_name);
+                };
 
 		}])
 		.controller('ProjectSheetsController',['$scope','project_types','projects','$state','$templateCache','$compile','userService','roleContributorService','projectSheets','$stateParams','Upload', function($scope,project_types,projects,$state,$templateCache,$compile,userService,roleContributorService,projectSheets,$stateParams,Upload){
@@ -301,7 +358,6 @@ angular.module('oci_controllers',[])
 					  	 $scope.security_sheet = resp.data.security_sheet;
 					  	 $scope.sheet = $scope.security_sheet.sheet_content;
 					  	 $scope.sheet.project = $scope.project;
-					  	 console.log($scope.sheet);
 
 					  	 if($scope.sheet.section1){
 					  	 	if($scope.sheet.section1.network_diagram)
@@ -358,7 +414,7 @@ angular.module('oci_controllers',[])
 				  	if(r == true){
 					$scope.is_loading = "is-loading";
 						Upload.upload({
-							url:'/project-sheets/create',
+							url:'/project-sheets/edit',
 							data:{'project-sheet':diagram,'contributors':$scope.users}
 						}).then(function(resp){
 							toastr.success('Fiche modifiée avec succès');
@@ -426,7 +482,7 @@ angular.module('oci_controllers',[])
 				  	if(r == true){
 				  		$scope.is_loading = true;
 				  		Upload.upload({
-				  			url:"/project-requirements/create",
+				  			url:"/project-requirements/edit",
 				  			data:{'requirement':requirement}
 				  		}).then(function(resp){
 						      toastr.success("Fiche d'exigences créée avec succès");

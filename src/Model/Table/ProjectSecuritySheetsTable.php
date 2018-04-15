@@ -96,7 +96,6 @@ class ProjectSecuritySheetsTable extends Table
     }
 
     public function beforeSave($event, $entity, $options){
-
             // save network diagram
             if(isset($entity->network_diagram))
             {
@@ -117,10 +116,14 @@ class ProjectSecuritySheetsTable extends Table
                               // update contributor
                               if(in_array($runtime_contributor['user_accounts'][0]['id'], $ProjectContributorsMapList)){
                                     $saved_contributor = $project_contributor_table->find()->where(['user_account_id'=>$runtime_contributor['user_accounts'][0]['id']])->first();
-                                    $saved_contributor->project_contributor_role_id = $runtime_contributor['assigned_role'];
-                                    $saved_contributor->dirty('project_contributor_role_id',true);
-                                    if(!$project_contributor_table->save($saved_contributor))
-                                        throw new Exception\BadRequestException(__('Error saved old contributor'));
+                                    if($saved_contributor->project_contributor_role_id !== $runtime_contributor['assigned_role']){
+                                          $saved_contributor->project_contributor_role_id = $runtime_contributor['assigned_role'];
+                                          $saved_contributor->creator = $entity->creator;
+                                          $saved_contributor->dirty('project_contributor_role_id',true);
+                                          if(!$project_contributor_table->save($saved_contributor))
+                                              throw new Exception\BadRequestException(__('Error saved old contributor'));
+                                    }
+
                               }
 
                               // Create contributor
@@ -131,8 +134,11 @@ class ProjectSecuritySheetsTable extends Table
                                                 $new_contributor->user_account_id = $runtime_contributor['user_accounts'][0]['id'];
                                                 $new_contributor->project_contributor_role_id = $runtime_contributor['assigned_role'];
                                                 $new_contributor->created_by = $entity->created_by;
+                                                $new_contributor->creator = $entity->creator;
+                                                
                                                      if(!$project_contributor_table->save($new_contributor))
                                                          throw new Exception\BadRequestException(__('Error saved new contributor'));
+
                                   }
                               }
 
@@ -150,6 +156,36 @@ class ProjectSecuritySheetsTable extends Table
 
         }
 
+    }
+    public function afterSave($event, $entity, $options){
+            $trail_table = TableRegistry::get('Trails');
+            $trail_action_table = TableRegistry::get('TrailActions');
+            $trail_target_table = TableRegistry::get('TrailTargets');
+            // get action
+            if($entity->is_new)
+                $search_action = "Création Fiche Sécurité Projet";
+            else
+                $search_action = "Modification Fiche Sécurité Projet";
+
+            $action = $trail_action_table->find()->select(['id'])
+                                          ->where(['action_denomination'=>$search_action])
+                                          ->first();
+            // get target
+            $target = $trail_target_table->find()->select(['id'])
+                                          ->where(['target_denomination'=>'Fiche Sécurité Projet'])
+                                          ->first();                
+
+            $trail = $trail_table->newEntity();
+            $trail->user_account_id = $entity->creator;
+            $trail->trail_action_id = $action->id;
+            $trail->trail_target_id = $target->id;
+            $trail->trail_parent_target = $entity->project_id;
+
+            if(!($trail->errors())){
+               if(!($trail_table->save($trail)))
+                throw new Exception\BadRequestException(__('error bad request save trail'));
+            }else
+              throw new Exception\BadRequestException(__('error bad request save trail'));
     }
 
 

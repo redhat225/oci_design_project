@@ -33,6 +33,16 @@ angular.module('oci_services',[])
 				});
 			}
 		}
+	}]).factory('projectAssetServices',['$http','$q', function($http, $q){
+		return{
+			upload: function(project_asset){
+				return $http.post('/project-assets/upload',{'project_asset':project_asset}).then(function(resp){
+					return resp;
+				}, function(err){
+					return $q.reject(err);
+				});
+			}
+		}
 	}]).factory('roleContributorService',['$http','$q', function($http, $q){
 		return{
 			all: function(){

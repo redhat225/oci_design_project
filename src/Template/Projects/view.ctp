@@ -1,10 +1,13 @@
 <section ui-view>
 	  <style>
-       #map {
+       #map{
         height: 400px;
         width: 100%;
        }
-    </style>
+      </style>
+
+    
+
 	<div class="columns">
 		<div class="column">
 			<nav class="breadcrumb" aria-label="breadcrumbs">
@@ -89,7 +92,7 @@
 							<th class="has-text-white">Action</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody ng-hide="is_loading_projects">
 						<tr ng-repeat="project in projects | filter:filter_keys" ng-class="set_cooperative_state(cooperative.deleted)" class="">
 							<td>{{project.project_fullname}}</td>
 							<td>{{project.project_priority}}</td>
@@ -129,10 +132,14 @@
 													  <a ui-sref="admins.projects.edit({project_id:project.id})" class="dropdown-item">
 											            	Modifier Projet
 													 </a>
-													   <a ng-click="showWorkflowModal()" class="dropdown-item">
+													   <a ng-click="showWorkflowModal(project)" class="dropdown-item">
 											            	Workflow Projet
 													 </a>
-													  <hr class="dropdown-divider">
+  													 <a ng-click="openAssetModal(project)" class="dropdown-item">
+											            	Uploader Document
+													 </a>													 
+													 
+													 <hr class="dropdown-divider">
 													  <h3 class="is-size-7 has-text-oci has-text-weight-bold">Fiche sécurité</h3>
 													 <a ng-if="project.project_security_sheets == ''" ui-sref="admins.projects-sheets.create({project_id:project.id})" class="dropdown-item">
 											            	Créer Fiche Sécurité Projet
@@ -211,4 +218,5 @@
      	<!-- Modal Box Info project -->
      	<?= $this->element('Projects/modal_info_project') ?>
      	<?= $this->element('Projects/modal_workflow_project') ?>
+     	<?= $this->element('Projects/modal_add_assets') ?>
 </section>

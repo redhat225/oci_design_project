@@ -49,6 +49,9 @@ class ProjectRequirementsController extends AppController
                 $data = $this->request->data;
                 $data['action'] = 'create';
                 $data['created_by'] = $this->request->session()->read('Auth.User.id');
+                $data['creator'] = $this->request->session()->read('Auth.User.id');
+                $data['is_new'] = true;
+
                 $project_requirement = $this->ProjectSecurityRequirements->newEntity($data);
                 if($this->ProjectSecurityRequirements->save($project_requirement)){
                     $response = ['message'=>'ok'];
@@ -74,7 +77,24 @@ class ProjectRequirementsController extends AppController
     }
 
     public function edit(){
-
+        if($this->request->is('ajax')){
+            if($this->request->is('post')){
+                $data = $this->request->data;
+                $data['action'] = 'create';
+                $data['created_by'] = $this->request->session()->read('Auth.User.id');
+                $data['creator'] = $this->request->session()->read('Auth.User.id');
+                $data['is_new'] = false;
+                
+                $project_requirement = $this->ProjectSecurityRequirements->newEntity($data);
+                if($this->ProjectSecurityRequirements->save($project_requirement)){
+                    $response = ['message'=>'ok'];
+                    $this->RequestHandler->renderAs($this, 'json');
+                    $this->set(compact('response'));
+                    $this->set('_serialize',['response']);
+                }else
+                  throw new Exception\BadRequestException(__('Error bad request'));
+            }
+        }
     }
 
     public function preview(){

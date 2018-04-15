@@ -8,7 +8,7 @@
 
 <div class="modal {{showWorkflowModalTrigger}}" id="show_workflow_modal">
   <div class="modal-background" ng-click="closeWorkflowModal()"></div>
-  <div class="modal-card">
+  <div class="modal-card" style="width:70%;">
     <header class="modal-card-head is-none-radius oci-orange-b">
       <p class="modal-card-title has-text-white">Workflow Projet</p>
       <button class="delete" type="button" ng-click="closeWorkflowModal()" aria-label="close"></button>
@@ -151,26 +151,22 @@
 			<table class="table is-fullwidth is-striped is-hoverable">
 				<thead>
 					<tr>
-						<th>Expediteur</th>
+						<th>Auteur</th>
 						<th>Fichier</th>
 						<th>Date</th>
-						<th>commentaire</th>
 						<th>type</th>
 						<th>Options</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Evrard KOFFI</td>
-						<td>achitecture.png</td>
-						<td>05-04-2018 10H15</td>
-						<td>architecture technique projet TNO</td>
-						<td>image</td>
-						<td><button class="button is-white">
-							<span class="icon">
-								<i class="fas fa-cog"></i>
-							</span>
-						</button></td>
+					<tr ng-repeat="asset in current_modal_project.project_assets">
+						<td><span class="has-text-weight-semibold is-uppercase">{{asset.user_account.user.user_fullname}}</span></td>
+						<td>{{asset.asset_name}}</td>
+						<td>{{asset.created | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+						<td>{{asset.asset_type}}</td>
+						<td>	      
+							<a ng-click="download_asset(asset)">Télécharger</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

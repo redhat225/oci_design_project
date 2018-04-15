@@ -52,9 +52,31 @@
 						      <select required ng-model="project.project_type_id" ng-options="p.project_type_denomination for p in project_types">
 						      </select>
 						    </div>
+
 						    <div class="icon is-small is-left">
 						    	<i class="fas fa-binoculars has-text-oci"></i>
 						    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<label for="" class="label">
+					Type de Projet
+				</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<div class="select">
+						 <select required ng-model="project.project_duration_type">
+						 	<option value="">Veuillez sélectionner une valeur</option>
+						 	<option value="fulltrack">FullTrack</option>
+						 	<option value="fastrack">FastTrack</option>
+						 	<option value="superfastrack">Super FastTrack</option>
+						 </select>
+						</div>
 					</div>
 				</div>
 			</div>

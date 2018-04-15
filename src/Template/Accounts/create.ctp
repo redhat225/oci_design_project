@@ -158,7 +158,6 @@
 						</p>
 					</div>
 				</div> 
-			
 			</div>
 
 			<h3 class="subtitle has-text-weight-semibold">Informations de compte</h3>

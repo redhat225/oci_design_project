@@ -57,6 +57,9 @@ class ProjectSheetsController extends AppController
                 $data = $this->request->data;
                 $data['action'] = 'create';
                 $data['created_by'] = $this->request->session()->read('Auth.User.id');
+                $data['creator'] = $this->request->session()->read('Auth.User.id');
+                $data['is_new'] = true;
+
                 $project_sheet = $this->ProjectSecuritySheets->newEntity($data,['associated'=>['Projects']]);
                 if($this->ProjectSecuritySheets->save($project_sheet)){
                     $this->RequestHandler->renderAs($this, 'json');
@@ -74,8 +77,20 @@ class ProjectSheetsController extends AppController
         if($this->request->is('ajax')){
             if($this->request->is('post')){
                 $data = $this->request->data;
-                debug($data);
-                die();
+                $data['action'] = 'create';
+                $data['created_by'] = $this->request->session()->read('Auth.User.id');
+                $data['creator'] = $this->request->session()->read('Auth.User.id');
+                $data['is_new'] = false;
+
+                $project_sheet = $this->ProjectSecuritySheets->newEntity($data,['associated'=>['Projects']]);
+                if($this->ProjectSecuritySheets->save($project_sheet)){
+                    $this->RequestHandler->renderAs($this, 'json');
+                    $response = 'ok';
+                    $this->set(compact('response'));
+                    $this->set('_serialize',['response']);
+                }else{
+                  throw new Exception\BadRequestException(__('error'));
+                }
             }
         }
     }

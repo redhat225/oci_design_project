@@ -32,6 +32,8 @@ class ProjectSecurityRequirement extends Entity
         'requirement_content' => true,
         'project_id' => true,
         'created_by' => true,
+        'is_new' => true,
+        'creator' => true,
         'created' => true,
         'modified' => true,
         'deleted' => true,

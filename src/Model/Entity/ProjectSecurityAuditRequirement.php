@@ -32,6 +32,8 @@ class ProjectSecurityAuditRequirement extends Entity
         'audit_requirement_content' => true,
         'project_id' => true,
         'created_by' => true,
+        'creator' => true,
+        'is_new' => true,
         'created' => true,
         'modified' => true,
         'deleted' => true,

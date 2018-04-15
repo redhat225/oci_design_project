@@ -73,6 +73,9 @@ class ProjectsTable extends Table
         $this->hasMany('ProjectSecurityRequirements', [
             'foreignKey' => 'project_id'
         ]);
+        $this->hasMany('ProjectAssets', [
+            'foreignKey' => 'project_id'
+        ]);
         $this->hasMany('ProjectSecuritySheets', [
             'foreignKey' => 'project_id'
         ]);
@@ -104,6 +107,12 @@ class ProjectsTable extends Table
             ->maxLength('project_priority', 50)
             ->requirePresence('project_priority', 'create')
             ->notEmpty('project_priority');
+
+        $validator
+            ->scalar('project_duration_type')
+            ->maxLength('project_duration_type', 100)
+            ->requirePresence('project_duration_type', 'create')
+            ->notEmpty('project_duration_type');
 
         $validator
             ->dateTime('deleted')
@@ -170,7 +179,8 @@ class ProjectsTable extends Table
                                          'contributor_details' => 'ras', 
                                          'user_account_id' => $user_account_id->id, 
                                          'project_contributor_role_id'=> $value['assigned_role']['id'],  
-                                         'created_by' => $data['created_by_contributor']
+                                         'created_by' => $data['created_by_contributor'],
+                                         'creator' => $data['created_by_contributor']
                                     ];
 
                                     array_push($data['project_contributors'], $contributor);
@@ -197,6 +207,42 @@ class ProjectsTable extends Table
 
         }
     }
+
+    public function beforeSave($event, $entity, $options){
+
+    }
+
+    public function afterSave($event, $entity, $options){
+            $trail_table = TableRegistry::get('Trails');
+            $trail_action_table = TableRegistry::get('TrailActions');
+            $trail_target_table = TableRegistry::get('TrailTargets');
+            // get action
+            if($entity->isNew())
+                $search_action = "Création Projet";
+            else
+                $search_action = "Modification Projet";
+
+            $action = $trail_action_table->find()->select(['id'])
+                                          ->where(['action_denomination'=>$search_action])
+                                          ->first();
+            // get target
+            $target = $trail_target_table->find()->select(['id'])
+                                          ->where(['target_denomination'=>'Projet'])
+                                          ->first();                
+
+            $trail = $trail_table->newEntity();
+            $trail->user_account_id = $entity->creator;
+            $trail->trail_action_id = $action->id;
+            $trail->trail_target_id = $target->id;
+            $trail->trail_parent_target = $entity->id;
+
+            if(!($trail->errors())){
+               if(!($trail_table->save($trail)))
+                throw new Exception\BadRequestException(__('error bad request save trail'));
+            }else
+              throw new Exception\BadRequestException(__('error bad request save trail'));
+    }
+
 
     /**
      * Returns a rules checker object that will be used for validating

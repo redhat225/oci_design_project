@@ -1,4 +1,4 @@
-angular.module('oci',['oci_controllers','oci_services','oci_directives','ui.router','ui.tinymce','ngFileUpload','angular-loading-bar','colorbox','chart.js','angular-fullcalendar'])
+angular.module('oci',['oci_controllers','oci_services','oci_directives','ui.router','ui.tinymce','ngFileUpload','angular-loading-bar','colorbox','chart.js','angular-fullcalendar','ngFileSaver'])
 	.run(['$rootScope','$templateCache','$transitions', function($rootScope, $templateCache,$transitions){
 		
 		$transitions.onStart({to:'admins.**'},function(trans){
@@ -16,7 +16,6 @@ angular.module('oci',['oci_controllers','oci_services','oci_directives','ui.rout
 		// Activate Html5 Mode + hashPrefix
 		$locationProvider.html5Mode(true);
 		$locationProvider.hashPrefix('!');
-
 		// Routing 
 		$stateProvider.state('admins',{
 			url:'/',

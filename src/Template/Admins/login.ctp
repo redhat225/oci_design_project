@@ -31,7 +31,7 @@
 							  <div class="loginForm control has-icons-right has-icons-left">
 							    <input class="input" name='username' required ng-model="logincontroller.credentials.user_account_username" type="text" ng-minlength="6" ng-maxlength="20" placeholder="Identifiant">
 								 	<span class="icon is-small is-left">
-								 		<i class="fa fa-user-o" aria-hidden="true"></i>
+								 		<i class="fas fa-address-card"></i>
 								 	</span>
 								    <span ng-if="loginBlogForm.username.$valid" class="icon is-small is-right">
 								      <i class="fa fa-check has-text-success"></i>

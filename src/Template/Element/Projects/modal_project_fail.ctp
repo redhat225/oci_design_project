@@ -10,7 +10,7 @@
 	   			 <h3 class="title">Désolé</h3>
 	   			 <p>Votre projet n'est pas éligible à un audit du pôle security by Design. Veuillez prendre connaissance de votre ticket projet pour plus d'informations</p>
 	   			 <p class="is-mar-top-40">
-	   			 	<a class="button is-oci is-outlined" target="_blank" href="/zine/read/{{ticket_path}}">
+	   			 	<a class="button is-oci is-outlined" target="_blank" href="/projects/preview/{{ticket_path}}.pdf">
 	   			 		Voir la fiche
 	   			 	</a>
 	   			 	<a ui-sref="admins.projects.view" class="is-black button">
